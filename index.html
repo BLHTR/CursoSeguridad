@@ -793,9 +793,10 @@
         
         function downloadResourcePdf() {
             try {
-                window.open('./Procedimiento_Reporte_Incidentes.pdf', '_blank');
+                const pdfUrl = 'https://raw.githubusercontent.com/BLHTR/CursoSeguridad/main/Procedimiento%20para%20el%20Reporte%20de%20Incidentes%20de%20Seguridad.pdf';
+                window.open(pdfUrl, '_blank');
             } catch (error) {
-                showMessage('No se pudo abrir el PDF. Asegúrate de que el archivo "Procedimiento_Reporte_Incidentes.pdf" exista en la misma carpeta.', 'error');
+                showMessage('Error al abrir el PDF del curso.', 'error');
             }
         }
 

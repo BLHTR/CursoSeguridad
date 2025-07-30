@@ -519,10 +519,25 @@
             }
         }
         
+        // --- IMPLEMENTACIÓN OPCIÓN 1 ---
         function loadAndSetVoice() {
             const voices = window.speechSynthesis.getVoices();
-            let voicePriority = voices.find(voice => voice.lang.startsWith('es-') && (voice.name.includes('Female') || voice.name.includes('Femenino') || voice.name.includes('Mujer')));
-            selectedVoice = voicePriority || voices.find(voice => voice.lang.startsWith('es-'));
+            let bestVoice = null;
+
+            // Priorizar voces de alta calidad conocidas
+            const highQualityNames = ['Google español', 'Microsoft Sabina', 'Paulina'];
+
+            for (const name of highQualityNames) {
+                bestVoice = voices.find(voice => voice.lang.startsWith('es-') && voice.name.includes(name));
+                if (bestVoice) break;
+            }
+
+            // Si no se encuentra una de alta calidad, usar la lógica anterior
+            if (!bestVoice) {
+                bestVoice = voices.find(voice => voice.lang.startsWith('es-') && (voice.name.includes('Female') || voice.name.includes('Femenino') || voice.name.includes('Mujer')));
+            }
+
+            selectedVoice = bestVoice || voices.find(voice => voice.lang.startsWith('es-'));
         }
 
         function speakNextInQueue() {
@@ -566,6 +581,10 @@
                         if (trimmedSentence) {
                             const utterance = new SpeechSynthesisUtterance(trimmedSentence);
                             utterance.lang = 'es-ES';
+                            // --- IMPLEMENTACIÓN OPCIÓN 1 ---
+                            // Ajuste de velocidad y tono para un sonido más natural
+                            utterance.rate = 0.9; // Un poco más lento que el normal (1.0)
+                            utterance.pitch = 1.0; // Tono normal
                             speechQueue.push({ utterance });
                         }
                     });

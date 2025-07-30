@@ -3,17 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Curso BlatoRH Group - Versión Definitiva</title>
-    <!-- Tailwind CSS CDN -->
+    <title>Curso BlatoRH Group - Offboarding de Consultores</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- jsPDF and html2canvas for diploma generation -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
-    <!-- Supabase CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         @keyframes pulse-glow {
@@ -162,7 +158,6 @@
     <main class="app-container">
         <div class="main-content-area w-full">
 
-            <!-- Loading overlay for diploma -->
             <div id="diploma-loading" class="hidden fixed inset-0 bg-black/70 z-50 flex items-center justify-center">
                 <div class="text-center p-6 bg-slate-800 rounded-xl">
                     <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-amber-500 mx-auto mb-4"></div>
@@ -170,33 +165,31 @@
                 </div>
             </div>
 
-            <!-- Message Box -->
             <div id="message-box" class="fixed top-5 left-1/2 -translate-x-1/2 mt-4 p-4 rounded-lg shadow-lg text-white z-50 hidden" role="alert">
                 <span id="message-text"></span>
                 <button onclick="document.getElementById('message-box').classList.add('hidden')" class="ml-4 font-bold">&times;</button>
             </div>
 
-            <!-- Login/Registration Screen -->
             <div id="login-screen" class="screen w-full min-h-screen">
                 <div class="login-grid">
                     <div class="login-promo hidden lg:flex flex-col justify-center items-start p-12">
                          <img src="./blatorh.png" alt="BlatoRH Logo" class="h-16 w-auto mb-8" onerror="this.src='https://placehold.co/200x64/FFFFFF/0a192f?text=BlatoRH'; this.onerror=null;">
-                        <h1 class="text-5xl font-bold text-white leading-tight mt-4">Procedimiento de Reporte de Incidentes</h1>
-                        <p class="text-slate-300 mt-4 text-lg">Tu rol es fundamental para proteger nuestra información. Esta capacitación te dará las herramientas para actuar de forma rápida y eficaz.</p>
+                        <h1 class="text-5xl font-bold text-white leading-tight mt-4">Procedimiento de Offboarding para Consultores</h1>
+                        <p class="text-slate-300 mt-4 text-lg">Asegurar una transición ordenada y segura es clave. Esta capacitación te guiará en cada paso del proceso de offboarding.</p>
                     </div>
                     <div class="flex flex-col justify-center items-center p-8 bg-slate-900/50">
                         <div class="w-full max-w-md">
                              <div class="text-center lg:hidden mb-8">
                                 <h2 class="text-3xl md:text-4xl font-bold text-white">BlatoRH Group</h2>
-                                <p class="mt-2 text-slate-300">Reporte de Incidentes</p>
+                                <p class="mt-2 text-slate-300">Offboarding de Consultores</p>
                              </div>
-                             <p class="text-center text-slate-300 mb-2">Ingresa tus datos para comenzar.</p>
-                             <div class="text-center mb-6">
+                            <p class="text-center text-slate-300 mb-2">Ingresa tus datos para comenzar.</p>
+                            <div class="text-center mb-6">
                                 <div class="inline-flex items-center bg-slate-800/50 px-3 py-1.5 rounded-full text-sm">
                                     <svg class="w-5 h-5 mr-2 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/></svg>
                                     <span id="course-duration-estimate"></span>
                                 </div>
-                             </div>
+                            </div>
                             <form id="login-form" class="space-y-6">
                                 <div>
                                     <label for="name" class="block text-sm font-medium text-slate-300">Nombre</label>
@@ -220,7 +213,6 @@
                 </div>
             </div>
 
-            <!-- Course Screen -->
             <div id="course-screen" class="card screen hidden w-full max-w-3xl mx-auto">
                 <div class="mb-6">
                     <p id="chapter-number" class="text-amber-400 font-semibold"></p>
@@ -236,7 +228,6 @@
                 </div>
             </div>
 
-            <!-- Quiz Screen -->
             <div id="quiz-screen" class="card screen hidden w-full max-w-2xl mx-auto">
                 <div class="text-center mb-6">
                     <h2 class="text-3xl font-bold">Evaluación Final</h2>
@@ -253,7 +244,6 @@
                  <button id="submit-quiz-btn" class="btn btn-primary w-full mt-8 hidden">Finalizar y Ver Resultados</button>
             </div>
             
-            <!-- Quiz Result Screen -->
             <div id="result-screen" class="card screen hidden text-center w-full max-w-md mx-auto">
                  <h2 class="text-3xl font-bold mb-4">Resultados</h2>
                  <p class="text-6xl font-bold mb-4" id="result-score"></p>
@@ -265,7 +255,6 @@
                  </div>
             </div>
 
-            <!-- Diploma Screen -->
             <div id="diploma-screen" class="card screen hidden w-full max-w-4xl mx-auto">
                 <h2 class="text-3xl font-bold mb-6 text-center">¡Felicitaciones, has completado el curso!</h2>
                 <div id="diploma-content-wrapper" class="p-2 bg-slate-800 rounded-lg">
@@ -276,7 +265,7 @@
                             <p class="diploma-text text-lg">Este certificado es otorgado a:</p>
                             <p class="diploma-text text-4xl font-bold my-6" id="diploma-participant-name" style="font-family: 'Playfair Display', serif;"></p>
                             <p class="diploma-text text-lg">Por haber completado exitosamente el curso:</p>
-                            <p class="diploma-text text-2xl font-bold my-4">"Procedimiento para el Reporte de Incidentes de Seguridad"</p>
+                            <p class="diploma-text text-2xl font-bold my-4">"Procedimiento de Offboarding para Consultores"</p>
                             <p class="diploma-text text-lg">Otorgado en la fecha:</p>
                             <p class="diploma-text text-xl font-semibold" id="diploma-date"></p>
                         </div>
@@ -299,7 +288,6 @@
                 </div>
             </div>
 
-            <!-- Admin Panel -->
             <div id="admin-panel" class="card screen hidden w-full max-w-4xl mx-auto">
                  <h2 class="text-2xl font-bold mb-6 text-center">Panel de Administración</h2>
                  <button id="export-csv-btn" class="btn btn-primary mb-4">Exportar Aprobados (CSV)</button>
@@ -325,10 +313,10 @@
     <script>
         // Configuración de Supabase
         const SUPABASE_URL = 'https://zaxyokejvwupwmbhenso.supabase.co';
-        const SUPABASE_ANON_KEY = 'sb_publishable_-o7wzFrtNcEeUMwX3kFGkA_y4mbCXUd'; 
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpheHlva2Vqdnd1cHdtYmhlbnNvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI4NzMwNDYsImV4cCI6MjA2ODQ0OTA0Nn0.boNwgjYadjo6deO_YfKbLCGt0ug4H012D2KuhX0WZB8';
         const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
         
-        const COURSE_TITLE = "Procedimiento de Reporte de Incidentes";
+        const COURSE_TITLE = "Procedimiento de Offboarding para Consultores";
 
         // DOM Elements
         const appHeader = document.getElementById('app-header');
@@ -348,7 +336,9 @@
         const courseDurationEstimate = document.getElementById('course-duration-estimate');
         const chapterNumberDisplay = document.getElementById('chapter-number');
         const progressBar = document.getElementById('progress-bar');
-        const chapterTitleDisplay = document.getElementById('chapter-title');
+        // ¡CORRECCIÓN! Posible typo: document = document.getElementById('chapter-title')
+        // Debería ser: const chapterTitleDisplay = document.getElementById('chapter-title');
+        const chapterTitleDisplay = document.getElementById('chapter-title'); // ¡CORREGIDO!
         const chapterContentDisplay = document.getElementById('chapter-content');
         const listenBtn = document.getElementById('listen-btn');
         const nextBtn = document.getElementById('next-btn');
@@ -384,23 +374,19 @@
 
         // Data
         const chapters = [
-            { title: "Identificación del Incidente", content: `<p><strong>Definición de Incidente:</strong> Un incidente de seguridad se refiere a cualquier evento que compromete la confidencialidad, integridad o disponibilidad de la información, ya sea por acceso no autorizado, pérdida de datos, fuga de información o cualquier otra amenaza.</p><p class="mt-4"><strong>Tipos de Incidentes Comunes:</strong></p><ul class="list-disc list-inside ml-4 space-y-2"><li><strong>Fuga de datos:</strong> Información confidencial compartida o accesible por personas no autorizadas.</li><li><strong>Acceso no autorizado:</strong> Ingreso a sistemas o información sin los permisos adecuados.</li><li><strong>Malware o ataques:</strong> Infecciones de software malicioso que afecten la seguridad de los sistemas.</li></ul>`},
-            { title: "Notificación Inmediata", content: `<p><strong>Responsabilidad de Notificación:</strong> El consultor que detecte el incidente debe notificarlo inmediatamente a su supervisor directo y al equipo de seguridad de la información de Blatorh Group.</p><p class="mt-4"><strong>Canales de Notificación:</strong></p><ul class="list-disc list-inside ml-4 space-y-2"><li><strong>Correo electrónico:</strong> Enviar un correo al equipo de seguridad de la información con el asunto "Reporte de Incidente de Seguridad" y los detalles del incidente.</li><li><strong>Teléfono o mensajería interna:</strong> Utilizar los medios de comunicación internos para asegurarse de que el equipo de seguridad reciba la notificación lo antes posible.</li></ul>`},
-            { title: "Documentación del Incidente", content: `<p><strong>Información Requerida:</strong></p><ul class="list-disc list-inside ml-4 space-y-2"><li><strong>Descripción del incidente:</strong> Explicar lo sucedido, incluyendo cómo se detectó el incidente y su impacto inicial.</li><li><strong>Fecha y hora:</strong> Registrar la fecha y hora exactas en que se detectó el incidente y cuándo se notificó.</li><li><strong>Sistemas o información afectados:</strong> Detallar qué sistemas o datos se vieron comprometidos.</li><li><strong>Acciones tomadas:</strong> Describir cualquier acción inmediata tomada para mitigar el impacto del incidente.</li></ul>`},
-            { title: "Evaluación Inicial", content: `<p><strong>Responsabilidad de Evaluación:</strong> El equipo de seguridad de la información realizará una evaluación inicial para determinar la gravedad del incidente y el alcance del daño.</p><p class="mt-4"><strong>Criterios de Evaluación:</strong></p><ul class="list-disc list-inside ml-4 space-y-2"><li><strong>Gravedad:</strong> Determinar si el incidente es menor, moderado o crítico.</li><li><strong>Alcance:</strong> Identificar cuántos sistemas, datos o personas se ven afectados.</li><li><strong>Impacto:</strong> Evaluar el impacto potencial en la operación de Blatorh Group y sus clientes.</li></ul>`},
-            { title: "Respuesta y Mitigación", content: `<p><strong>Implementación de Medidas de Contención:</strong> El equipo de seguridad implementará medidas para contener el incidente y evitar que se propague o cause más daño, como desconectar sistemas o restablecer contraseñas.</p><p class="mt-4"><strong>Monitoreo:</strong> Iniciar un monitoreo constante de los sistemas para detectar actividades sospechosas adicionales.</p>`},
-            { title: "Comunicación Interna y Externa", content: `<p><strong>Informe Interno:</strong> Preparar un informe interno detallando el incidente para los líderes de Blatorh Group.</p><p class="mt-4"><strong>Notificación a Clientes:</strong> Si el incidente afecta a clientes, notificarles de manera oportuna, respetando siempre la confidencialidad.</p>`},
-            { title: "Recuperación y Restauración", content: `<p><strong>Restauración de Sistemas:</strong> Una vez contenido el incidente, proceder a restaurar los sistemas y datos a su estado normal.</p><p class="mt-4"><strong>Revisión de Backups:</strong> Verificar la integridad de los backups y, si es necesario, restaurar desde una copia de seguridad segura.</p><p class="mt-4"><strong>Validación:</strong> Asegurar que todos los sistemas vuelvan a estar operativos y sin vulnerabilidades.</p>`},
-            { title: "Análisis Post-Incidente", content: `<p><strong>Revisión y Análisis:</strong> El equipo de seguridad debe realizar una revisión completa del incidente para entender las causas raíz y cómo se puede prevenir en el futuro.</p><p class="mt-4"><strong>Lecciones Aprendidas:</strong> Documentar las lecciones aprendidas y mejorar los procedimientos y políticas de seguridad.</p>`},
-            { title: "Reporte Final y Archivo", content: `<p><strong>Elaboración de un Reporte Final:</strong> Crear un reporte final que incluya todos los detalles del incidente, desde su detección hasta la resolución.</p><p class="mt-4"><strong>Archivo Seguro:</strong> Guardar el reporte en un lugar seguro y accesible para futuras referencias y auditorías.</p>`},
-            { title: "Formación y Mejora Continua", content: `<p><strong>Capacitación:</strong> Realizar sesiones de formación con los consultores y empleados para asegurar que todos estén al tanto del procedimiento.</p><p class="mt-4"><strong>Simulacros de Incidentes:</strong> Llevar a cabo simulacros periódicos para evaluar la preparación del equipo y mejorar la respuesta a incidentes reales.</p>`}
+            { title: "Notificación de Terminación", content: `<p><strong>Confirmación de la Terminación:</strong> Recursos Humanos notifica al consultor sobre la terminación del contrato, indicando la fecha final de trabajo.</p><p class="mt-4"><strong>Revisión de documentación:</strong> El consultor debe proporcionar cualquier documentación pendiente y completar formularios requeridos por Recursos Humanos.</p><p class="mt-4"><strong>Comunicación al Equipo:</strong> El líder de proyecto informa al equipo sobre la salida del consultor, asegurando una transición fluida.</p>`},
+            { title: "Devolución de Equipos y Accesos", content: `<p><strong>Devolución de Equipos:</strong> El consultor debe devolver todo el equipo proporcionado por la empresa (computadora, teléfono, etc.) en buen estado.</p><p class="mt-4"><strong>Revocación de Accesos:</strong> El área de IT revoca todos los accesos a sistemas internos, correo electrónico, VPN y cualquier otro sistema utilizado por el consultor.</p>`},
+            { title: "Transferencia de Conocimientos y Proyectos", content: `<p><strong>Documentación de Proyectos:</strong> El consultor debe documentar el estado de los proyectos en curso, asegurando que toda la información relevante esté accesible para el equipo.</p><p class="mt-4"><strong>Reunión de Transferencia:</strong> Se organiza una reunión entre el consultor saliente, el líder de proyecto y cualquier otro miembro relevante del equipo para transferir conocimientos clave.</p>`},
+            { title: "Liquidación Final y Beneficios", content: `<p><strong>Liquidación de Pagos:</strong> Recursos Humanos y Finanzas procesan la liquidación final del consultor, incluyendo cualquier pago pendiente de honorarios, vacaciones no utilizadas y otros beneficios acumulados.</p>`},
+            { title: "Entrevista de Salida", content: `<p><strong>Entrevista de Salida:</strong> Recursos Humanos organiza una entrevista de salida para recibir feedback del consultor sobre su experiencia en Blatorh Group y posibles áreas de mejora.</p>`},
+            { title: "Cumplimiento de Acuerdos de Confidencialidad", content: `<p><strong>Recordatorio del NDA:</strong> Recursos Humanos recuerda al consultor sobre el cumplimiento continuo del Acuerdo de Confidencialidad (NDA) incluso después de su salida.</p><p class="mt-4"><strong>Firma de Declaración:</strong> El consultor firma una declaración final confirmando que no retiene ninguna información confidencial ni propiedad intelectual de la empresa.</p>`}
         ];
         const quizQuestions = [
-            { question: "¿Qué se considera un incidente de seguridad según el documento?", options: ["Un evento que compromete la confidencialidad, integridad o disponibilidad de la información.", "Una falla de hardware sin impacto en los datos.", "Un acceso autorizado a un sistema."], answer: 0 },
-            { question: "¿A quién debe notificar inmediatamente un consultor que detecte un incidente?", options: ["Directamente al cliente.", "A su supervisor directo y al equipo de seguridad de Blatorh Group.", "A cualquier colega disponible."], answer: 1 },
-            { question: "¿Cuál es una medida de contención que el equipo de seguridad puede implementar?", options: ["Esperar a que el incidente se resuelva solo.", "Ignorar el incidente si parece menor.", "Desconectar sistemas comprometidos."], answer: 2 },
-            { question: "Después de contener un incidente, ¿qué se debe hacer para restaurar los sistemas?", options: ["Proceder a restaurar los sistemas y datos, verificando la integridad de los backups.", "Dejar los sistemas comprometidos aislados indefinidamente.", "Instalar nuevo software sin verificar."], answer: 0 },
-            { question: "¿Qué acciones se sugieren para la mejora continua en el manejo de incidentes?", options: ["Reducir la capacitación para ahorrar costos.", "Realizar sesiones de formación y simulacros periódicos.", "Mantener el procedimiento en secreto."], answer: 1 }
+            { question: "¿Quién notifica al consultor sobre la terminación de su contrato?", options: ["El líder de proyecto", "Un compañero de equipo", "Recursos Humanos", "El área de Finanzas"], answer: 2 },
+            { question: "¿Qué área es responsable de revocar los accesos a los sistemas internos?", options: ["El consultor mismo", "El área de IT", "Recursos Humanos", "El líder de proyecto"], answer: 1 },
+            { question: "¿Cuál es el propósito de la reunión de transferencia?", options: ["Discutir la liquidación final", "Devolver el equipo de la empresa", "Transferir conocimientos clave al equipo", "Realizar la entrevista de salida"], answer: 2 },
+            { question: "¿Quién organiza la entrevista de salida con el consultor?", options: ["El área de Finanzas", "El líder de proyecto", "El área de IT", "Recursos Humanos"], answer: 3 },
+            { question: "¿Qué debe firmar el consultor al final del proceso para confirmar que no retiene información sensible?", options: ["Un nuevo contrato", "Una declaración de confidencialidad", "Un formulario de devolución de equipos", "La liquidación final"], answer: 1 }
         ];
         
         // Functions
@@ -435,9 +421,9 @@
                     course_title: user.course_title,
                     progress: user.progress || 0,
                     quiz_score: user.quizScore || null,
-                    completed_date: user.completedDate || null,
+                    completed_date: user.completed_date || null,
                     approved: user.approved || false
-                }, { onConflict: 'id' });
+                }, { onConflict: 'id' }); // onConflict: 'id' es válido si el id es la PK para este registro de progreso
 
             if (error) {
                 console.error('Error guardando progreso:', error.message);
@@ -448,6 +434,9 @@
             }
         }
 
+        // ¡MODIFICADO! Esta función ahora no se usa en initializeApp directamente,
+        // la lógica se movió para buscar por email y course_title.
+        // Se mantiene por si se usa en otro lugar, pero su llamado ha sido ajustado.
         async function loadUserProgressFromSupabase(userId) {
             const { data, error } = await supabaseClient
                 .from('users_progress')
@@ -455,9 +444,9 @@
                 .eq('id', userId)
                 .single();
 
-            if (error && error.code !== 'PGRST116') {
-                console.error('Error cargando progreso:', error.message);
-                showMessage('Error cargando progreso.', 'error');
+            if (error && error.code !== 'PGRST116') { // PGRST116 = No row found
+                console.error('Error cargando progreso por userId:', error.message);
+                // No mostrar mensaje de error si no se encuentra la fila (es un comportamiento esperado)
                 return null;
             }
             return data;
@@ -630,7 +619,7 @@
             
             if (currentUser) {
                 currentUser.quizScore = score;
-                currentUser.completedDate = new Date().toLocaleDateString('es-AR');
+                currentUser.completed_date = new Date().toLocaleDateString('es-AR');
                 currentUser.approved = score >= 80;
                 await saveUserProgressToSupabase(currentUser);
             }
@@ -667,24 +656,58 @@
                 showScreen('admin');
                 loadApprovedUsers();
             } else {
-                const storedUserId = localStorage.getItem('blatorh_course_userId');
-                if (storedUserId) {
-                    const userDataFromDB = await loadUserProgressFromSupabase(storedUserId);
-                    if (userDataFromDB) {
-                        currentUser = { ...userDataFromDB };
-                        if (currentUser.approved) {
-                            showScreen('diploma');
-                            updateDiplomaContent();
-                        } else {
-                            showScreen('course');
-                            currentChapterIndex = currentUser.progress || 0;
-                            loadChapter();
+                // ¡MODIFICADO! Intentar cargar el último email y course_title usados desde localStorage
+                const storedEmail = localStorage.getItem('blatorh_course_email'); // ¡NUEVO!
+                const storedCourseTitle = localStorage.getItem('blatorh_course_title'); // ¡NUEVO!
+
+                // Si encontramos tanto el email como el course_title en localStorage, intentamos cargar el progreso
+                if (storedEmail && storedCourseTitle === COURSE_TITLE) { // ¡MODIFICADO! Verificar si es el mismo curso
+                    try {
+                        const { data: userDataFromDB, error: loadError } = await supabaseClient
+                            .from('users_progress')
+                            .select('*')
+                            .eq('email', storedEmail) // ¡MODIFICADO! Buscar por email
+                            .eq('course_title', COURSE_TITLE) // ¡MODIFICADO! Y por el título del curso actual
+                            .single();
+
+                        if (loadError && loadError.code !== 'PGRST116') { // PGRST116 = No row found
+                            throw loadError;
                         }
-                    } else {
-                        localStorage.removeItem('blatorh_course_userId');
+                        
+                        if (userDataFromDB) {
+                            currentUser = { ...userDataFromDB };
+                            // Precargar los campos del formulario con los datos cargados
+                            nameInput.value = currentUser.name || ''; // ¡NUEVO!
+                            surnameInput.value = currentUser.surname || ''; // ¡NUEVO!
+                            emailInput.value = currentUser.email || ''; // ¡NUEVO!
+
+                            if (currentUser.approved) {
+                                showScreen('diploma');
+                                updateDiplomaContent();
+                            } else {
+                                showScreen('course');
+                                currentChapterIndex = currentUser.progress || 0;
+                                loadChapter();
+                            }
+                        } else {
+                            // Si no se encuentra un registro para el email Y el curso actual,
+                            // o si el 'storedCourseTitle' no es para el curso actual,
+                            // o si el storedUserId no existe para este curso (aunque ya no lo usamos para la búsqueda principal aquí)
+                            // limpia el localStorage y muestra la pantalla de login.
+                            localStorage.removeItem('blatorh_course_email'); // ¡MODIFICADO!
+                            localStorage.removeItem('blatorh_course_title'); // ¡MODIFICADO!
+                            showScreen('login');
+                        }
+                    } catch (err) {
+                        console.error('Error cargando progreso al inicio:', err);
+                        showMessage('Error al cargar tu progreso. Por favor, intenta iniciar sesión de nuevo.', 'error');
+                        localStorage.removeItem('blatorh_course_email'); // ¡MODIFICADO!
+                        localStorage.removeItem('blatorh_course_title'); // ¡MODIFICADO!
                         showScreen('login');
                     }
                 } else {
+                    // Si no hay datos en localStorage para este curso, o es un curso diferente,
+                    // mostrar la pantalla de login.
                     showScreen('login');
                     courseDurationEstimate.textContent = `Duración: ${calculateCourseDuration()} min`;
                 }
@@ -694,7 +717,7 @@
         function updateDiplomaContent() {
              if (currentUser) {
                 diplomaParticipantName.textContent = `${currentUser.name || ''} ${currentUser.surname || ''}`.trim();
-                diplomaDate.textContent = currentUser.completedDate;
+                diplomaDate.textContent = currentUser.completed_date;
             }
         }
 
@@ -709,7 +732,7 @@
                 const imgData = canvas.toDataURL('image/png');
                 const pdf = new jsPDF({ orientation: 'landscape', unit: 'px', format: [canvas.width, canvas.height] });
                 pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
-                pdf.save(`Diploma_BlatoRH_${currentUser.name}_${currentUser.surname}.pdf`);
+                pdf.save(`Diploma_BlatoRH_${currentUser.name}_${currentUser.surname}_${COURSE_TITLE.replace(/\s/g, '_')}.pdf`); // ¡MODIFICADO! Nombre de archivo más específico
             } catch (error) {
                 showMessage('Error al generar el diploma en PDF.', 'error');
             } finally {
@@ -720,7 +743,9 @@
         
         async function restartCourse(fullRestart = true) {
              if (fullRestart) {
-                localStorage.removeItem('blatorh_course_userId');
+                // ¡MODIFICADO! Eliminar solo los datos de este curso del localStorage
+                localStorage.removeItem('blatorh_course_email');
+                localStorage.removeItem('blatorh_course_title');
                 currentUser = null;
                 window.location.reload();
              } else {
@@ -766,7 +791,7 @@
                 surname: row.cells[1].textContent,
                 email: row.cells[2].textContent,
                 quizScore: row.cells[3].textContent,
-                completedDate: row.cells[4].textContent
+                completedDate: row.cells[4].textContent // Mantengo completedDate aquí si el exportador lo espera así
             }));
 
             if (users.length === 0 || (users.length === 1 && users[0].name === 'No hay usuarios aprobados aún.')) {
@@ -813,36 +838,55 @@
             const email = emailInput.value.trim();
 
             try {
+                // ¡MODIFICADO! Buscar usuario por email Y course_title
                 const { data: existingUser, error: findError } = await supabaseClient
                     .from('users_progress')
-                    .select('id, progress, approved')
+                    .select('id, progress, approved, name, surname, completed_date, quiz_score') // Asegúrate de obtener todos los campos necesarios
                     .eq('email', email)
+                    .eq('course_title', COURSE_TITLE) // ¡CLAVE! Filtrar por el título del curso actual
                     .single();
 
-                if (findError && findError.code !== 'PGRST116') {
-                    throw findError;
+                if (findError && findError.code !== 'PGRST116') { // PGRST116 = No row found (esto es esperado si no existe)
+                    throw findError; // Otros errores sí son problemáticos
                 }
 
                 if (existingUser) {
-                    currentUser = { ...existingUser, name, surname, email, course_title: COURSE_TITLE };
-                } else {
+                    // Si el usuario existe para ESTE curso, cargamos sus datos existentes
                     currentUser = {
-                        id: crypto.randomUUID(),
+                        ...existingUser,
+                        // Forzar la actualización de nombre y apellido si el usuario los cambia en el formulario
+                        name: name,
+                        surname: surname,
+                        email: email, // Asegurar que el email actual se use
+                        course_title: COURSE_TITLE // Asegurar que el título del curso sea el actual
+                    };
+                } else {
+                    // Si no existe un registro para ESTE usuario Y ESTE curso, creamos uno nuevo
+                    currentUser = {
+                        id: crypto.randomUUID(), // Generamos un nuevo ID UUID
                         name: name,
                         surname: surname,
                         email: email,
                         course_title: COURSE_TITLE,
                         progress: 0,
                         quizScore: null,
-                        completedDate: null,
+                        completed_date: null,
                         approved: false
                     };
                 }
 
+                // Guardar/Actualizar el progreso del usuario en Supabase
+                // onConflict: ['email', 'course_title'] es más robusto si quieres que el UPSERT sepa que esos campos son únicos.
+                // Sin embargo, como el 'id' es PK, 'onConflict: 'id'' está bien si el ID ya se maneja en el frontend de forma única por curso.
+                // Pero si hay conflictos lógicos, el `id` generará nuevos registros si la combinación email/course_title ya tiene un id diferente.
+                // Con la restricción UNIQUE en DB, esto es menos crítico, ya que la DB lo impedirá.
                 await saveUserProgressToSupabase(currentUser);
-                localStorage.setItem('blatorh_course_userId', currentUser.id);
 
-                if (currentUser.approved) {
+                // ¡MODIFICADO! Almacenar email y course_title en localStorage en lugar de solo userId
+                localStorage.setItem('blatorh_course_email', currentUser.email);
+                localStorage.setItem('blatorh_course_title', currentUser.course_title); // ¡NUEVO!
+
+                if (currentUser.approved && currentUser.course_title === COURSE_TITLE) { // ¡MODIFICADO! Doble check para el diploma
                     showScreen('diploma');
                     updateDiplomaContent();
                 } else {
@@ -853,7 +897,14 @@
 
             } catch (err) {
                 console.error('Error en el ingreso:', err);
-                showMessage(`Error: ${err.message}.`, 'error');
+                // Si el error es una violación de restricción única (por ejemplo, si se intenta insertar un duplicado de email/course_title
+                // que no fue capturado por la lógica existingUser por algún motivo), mostrar un mensaje más específico.
+                const errorMessage = err.message || 'Ocurrió un problema al conectar con la base de datos. Revisa las políticas de seguridad (RLS) en Supabase o la consola del navegador para más detalles.';
+                if (err.code === '23505') { // Código de error SQL para violación de restricción única
+                     showMessage(`Error: Ya existe un registro para este email en este curso.`, 'error');
+                } else {
+                    showMessage(`Error: ${errorMessage}`, 'error');
+                }
             } finally {
                 loginSubmitBtn.disabled = false;
                 loginSubmitBtn.querySelector('.btn-text').classList.remove('hidden');

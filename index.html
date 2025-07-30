@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Curso BlatoRH Group - Offboarding de Consultores</title>
+    <title>Curso BlatoRH Group - Manejo e Intercambio de Información para Consultores</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -174,14 +174,14 @@
                 <div class="login-grid">
                     <div class="login-promo hidden lg:flex flex-col justify-center items-start p-12">
                          <img src="./blatorh.png" alt="BlatoRH Logo" class="h-16 w-auto mb-8" onerror="this.src='https://placehold.co/200x64/FFFFFF/0a192f?text=BlatoRH'; this.onerror=null;">
-                        <h1 class="text-5xl font-bold text-white leading-tight mt-4">Procedimiento de Offboarding para Consultores</h1>
-                        <p class="text-slate-300 mt-4 text-lg">Asegurar una transición ordenada y segura es clave. Esta capacitación te guiará en cada paso del proceso de offboarding.</p>
+                        <h1 class="text-5xl font-bold text-white leading-tight mt-4">Manejo e Intercambio de Información para Consultores</h1>
+                        <p class="text-slate-300 mt-4 text-lg">Proteger la información de nuestros clientes y de la empresa es una responsabilidad fundamental. Este curso te guiará en las mejores prácticas.</p>
                     </div>
                     <div class="flex flex-col justify-center items-center p-8 bg-slate-900/50">
                         <div class="w-full max-w-md">
                              <div class="text-center lg:hidden mb-8">
-                                <h2 class="text-3xl md:text-4xl font-bold text-white">BlatoRH Group</h2>
-                                <p class="mt-2 text-slate-300">Offboarding de Consultores</p>
+                                 <h2 class="text-3xl md:text-4xl font-bold text-white">BlatoRH Group</h2>
+                                 <p class="mt-2 text-slate-300">Manejo e Intercambio de Información para Consultores</p>
                              </div>
                             <p class="text-center text-slate-300 mb-2">Ingresa tus datos para comenzar.</p>
                             <div class="text-center mb-6">
@@ -213,7 +213,7 @@
                 </div>
             </div>
 
-            <div id="course-screen" class="card screen hidden w-full max-w-3xl mx-auto">
+            <div id="course-screen" class="card screen hidden w-full max-w-3xl mx-auto p-6 md:p-8">
                 <div class="mb-6">
                     <p id="chapter-number" class="text-amber-400 font-semibold"></p>
                     <h2 id="chapter-title" class="text-3xl md:text-4xl font-bold mt-1"></h2>
@@ -228,7 +228,7 @@
                 </div>
             </div>
 
-            <div id="quiz-screen" class="card screen hidden w-full max-w-2xl mx-auto">
+            <div id="quiz-screen" class="card screen hidden w-full max-w-2xl mx-auto p-6 md:p-8">
                 <div class="text-center mb-6">
                     <h2 class="text-3xl font-bold">Evaluación Final</h2>
                     <p class="text-slate-300 mt-1">Demuestra lo que has aprendido.</p>
@@ -244,18 +244,18 @@
                  <button id="submit-quiz-btn" class="btn btn-primary w-full mt-8 hidden">Finalizar y Ver Resultados</button>
             </div>
             
-            <div id="result-screen" class="card screen hidden text-center w-full max-w-md mx-auto">
+            <div id="result-screen" class="card screen hidden text-center w-full max-w-md mx-auto p-6 md:p-8">
                  <h2 class="text-3xl font-bold mb-4">Resultados</h2>
                  <p class="text-6xl font-bold mb-4" id="result-score"></p>
                  <p class="text-xl mb-8" id="result-message"></p>
                  <div id="result-summary" class="space-y-2 text-left max-w-md mx-auto mb-8"></div>
                  <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-                    <button id="restart-quiz-btn" class="btn btn-secondary">Reintentar</button>
-                    <button id="diploma-btn" class="btn btn-primary hidden">Ver Diploma</button>
+                     <button id="restart-quiz-btn" class="btn btn-secondary">Reintentar</button>
+                     <button id="diploma-btn" class="btn btn-primary hidden">Ver Diploma</button>
                  </div>
             </div>
 
-            <div id="diploma-screen" class="card screen hidden w-full max-w-4xl mx-auto">
+            <div id="diploma-screen" class="card screen hidden w-full max-w-4xl mx-auto p-6 md:p-8">
                 <h2 class="text-3xl font-bold mb-6 text-center">¡Felicitaciones, has completado el curso!</h2>
                 <div id="diploma-content-wrapper" class="p-2 bg-slate-800 rounded-lg">
                     <div id="diploma-content">
@@ -265,7 +265,7 @@
                             <p class="diploma-text text-lg">Este certificado es otorgado a:</p>
                             <p class="diploma-text text-4xl font-bold my-6" id="diploma-participant-name" style="font-family: 'Playfair Display', serif;"></p>
                             <p class="diploma-text text-lg">Por haber completado exitosamente el curso:</p>
-                            <p class="diploma-text text-2xl font-bold my-4">"Procedimiento de Offboarding para Consultores"</p>
+                            <p class="diploma-text text-2xl font-bold my-4">"Manejo e Intercambio de Información para Consultores"</p>
                             <p class="diploma-text text-lg">Otorgado en la fecha:</p>
                             <p class="diploma-text text-xl font-semibold" id="diploma-date"></p>
                         </div>
@@ -288,7 +288,7 @@
                 </div>
             </div>
 
-            <div id="admin-panel" class="card screen hidden w-full max-w-4xl mx-auto">
+            <div id="admin-panel" class="card screen hidden w-full max-w-4xl mx-auto p-6 md:p-8">
                  <h2 class="text-2xl font-bold mb-6 text-center">Panel de Administración</h2>
                  <button id="export-csv-btn" class="btn btn-primary mb-4">Exportar Aprobados (CSV)</button>
                  <div class="overflow-x-auto">
@@ -316,7 +316,7 @@
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpheHlva2Vqdnd1cHdtYmhlbnNvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI4NzMwNDYsImV4cCI6MjA2ODQ0OTA0Nn0.boNwgjYadjo6deO_YfKbLCGt0ug4H012D2KuhX0WZB8';
         const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
         
-        const COURSE_TITLE = "Procedimiento de Offboarding para Consultores";
+        const COURSE_TITLE = "Manejo e Intercambio de Información para Consultores";
 
         // DOM Elements
         const appHeader = document.getElementById('app-header');
@@ -336,9 +336,7 @@
         const courseDurationEstimate = document.getElementById('course-duration-estimate');
         const chapterNumberDisplay = document.getElementById('chapter-number');
         const progressBar = document.getElementById('progress-bar');
-        // ¡CORRECCIÓN! Posible typo: document = document.getElementById('chapter-title')
-        // Debería ser: const chapterTitleDisplay = document.getElementById('chapter-title');
-        const chapterTitleDisplay = document.getElementById('chapter-title'); // ¡CORREGIDO!
+        const chapterTitleDisplay = document.getElementById('chapter-title');
         const chapterContentDisplay = document.getElementById('chapter-content');
         const listenBtn = document.getElementById('listen-btn');
         const nextBtn = document.getElementById('next-btn');
@@ -374,19 +372,45 @@
 
         // Data
         const chapters = [
-            { title: "Notificación de Terminación", content: `<p><strong>Confirmación de la Terminación:</strong> Recursos Humanos notifica al consultor sobre la terminación del contrato, indicando la fecha final de trabajo.</p><p class="mt-4"><strong>Revisión de documentación:</strong> El consultor debe proporcionar cualquier documentación pendiente y completar formularios requeridos por Recursos Humanos.</p><p class="mt-4"><strong>Comunicación al Equipo:</strong> El líder de proyecto informa al equipo sobre la salida del consultor, asegurando una transición fluida.</p>`},
-            { title: "Devolución de Equipos y Accesos", content: `<p><strong>Devolución de Equipos:</strong> El consultor debe devolver todo el equipo proporcionado por la empresa (computadora, teléfono, etc.) en buen estado.</p><p class="mt-4"><strong>Revocación de Accesos:</strong> El área de IT revoca todos los accesos a sistemas internos, correo electrónico, VPN y cualquier otro sistema utilizado por el consultor.</p>`},
-            { title: "Transferencia de Conocimientos y Proyectos", content: `<p><strong>Documentación de Proyectos:</strong> El consultor debe documentar el estado de los proyectos en curso, asegurando que toda la información relevante esté accesible para el equipo.</p><p class="mt-4"><strong>Reunión de Transferencia:</strong> Se organiza una reunión entre el consultor saliente, el líder de proyecto y cualquier otro miembro relevante del equipo para transferir conocimientos clave.</p>`},
-            { title: "Liquidación Final y Beneficios", content: `<p><strong>Liquidación de Pagos:</strong> Recursos Humanos y Finanzas procesan la liquidación final del consultor, incluyendo cualquier pago pendiente de honorarios, vacaciones no utilizadas y otros beneficios acumulados.</p>`},
-            { title: "Entrevista de Salida", content: `<p><strong>Entrevista de Salida:</strong> Recursos Humanos organiza una entrevista de salida para recibir feedback del consultor sobre su experiencia en Blatorh Group y posibles áreas de mejora.</p>`},
-            { title: "Cumplimiento de Acuerdos de Confidencialidad", content: `<p><strong>Recordatorio del NDA:</strong> Recursos Humanos recuerda al consultor sobre el cumplimiento continuo del Acuerdo de Confidencialidad (NDA) incluso después de su salida.</p><p class="mt-4"><strong>Firma de Declaración:</strong> El consultor firma una declaración final confirmando que no retiene ninguna información confidencial ni propiedad intelectual de la empresa.</p>`}
+            { 
+                title: "Almacenamiento de Información", 
+                content: `<p><strong>Ubicación del Almacenamiento:</strong> Los consultores deben almacenar toda la información relacionada con el trabajo exclusivamente en los servidores en la nube de Google proporcionados por BlatoRH Group.</p><p class="mt-4"><strong>Organización:</strong> La información debe organizarse en carpetas por temas. El propietario de cada carpeta decide si el contenido es de uso común dentro de BlatoRH o si tiene acceso restringido a miembros específicos.</p><p class="mt-4"><strong>Clasificación Sugerida:</strong> Se recomienda clasificar la información en tres niveles: <strong>Pública</strong> (accesible para todos), <strong>Interna</strong> (solo para miembros de BlatoRH) y <strong>Confidencial</strong> (altamente sensible y con acceso restringido).</p>`
+            },
+            { 
+                title: "Intercambio de Información", 
+                content: `<p><strong>Herramientas Aprobadas:</strong> Para compartir información se deben utilizar las herramientas de la suite de Google (Drive, Docs, Sheets) y otras herramientas homologadas por la empresa como Excel, PowerPoint y Word.</p><p class="mt-4"><strong>Compartir con Terceros:</strong> La información solo debe compartirse con clientes aprobados, nunca con consultores externos a BlatoRH Group.</p><p class="mt-4"><strong>Manejo de Información Confidencial:</strong> Para compartir datos confidenciales, es mandatorio usar autenticación adicional, verificar siempre los permisos de acceso y <strong>nunca usar enlaces públicos</strong>. La información debe compartirse directamente a las cuentas específicas.</p>`
+            },
+            { 
+                title: "Acceso y Control de Información", 
+                content: `<p><strong>Acceso a Información Confidencial:</strong> Este tipo de información debe ser accesible únicamente por los socios de BlatoRH Group y las personas que ellos explícitamente designen.</p><p class="mt-4"><strong>Proceso de Offboarding:</strong> Cuando un consultor deja la empresa, se deben revocar inmediatamente todos sus accesos. Además, es crucial asegurar que el consultor no retiene ninguna copia de información confidencial en sus dispositivos personales.</p>`
+            },
+            { 
+                title: "Uso de Información en Dispositivos Móviles", 
+                content: `<p><strong>Restricción Principal:</strong> Está terminantemente prohibido acceder a información clasificada como <strong>Confidencial</strong> desde dispositivos móviles para minimizar riesgos.</p><p class="mt-4"><strong>Acceso Permitido:</strong> Se puede acceder a información Pública e Interna desde móviles, siempre que el dispositivo cuente con medidas de seguridad básicas (bloqueo de pantalla, sistema operativo actualizado) y se evite el uso de redes Wi-Fi públicas no seguras.</p>`
+            },
+            { 
+                title: "Backup y Recuperación de Datos", 
+                content: `<p><strong>Política de Backup:</strong> Los respaldos son gestionados automáticamente por Google. Los consultores no necesitan realizar acciones adicionales para respaldar la información.</p><p class="mt-4"><strong>Proceso de Recuperación:</strong> En caso de pérdida de datos, se debe contactar inmediatamente al equipo de soporte de TI de BlatoRH Group. No se debe intentar restaurar datos desde fuentes no autorizadas.</p>`
+            },
+            { 
+                title: "Manejo de Información en Caso de Incidentes", 
+                content: `<p><strong>Notificación Inmediata:</strong> Ante una fuga de datos o un acceso no autorizado, el consultor debe notificar inmediatamente a su supervisor y al equipo de seguridad de la información.</p><p class="mt-4"><strong>Procedimiento a Seguir:</strong> Se debe proporcionar un informe detallado del incidente y seguir los procedimientos internos para contener, documentar y mitigar el impacto.</p>`
+            },
+            {
+                title: "Eliminación Segura de Información",
+                content: `<p><strong>Eliminación Digital:</strong> Para la información confidencial en formato digital, se deben usar las herramientas de eliminación permanente que proporciona Google.</p><p class="mt-4"><strong>Eliminación Física:</strong> Al deshacerse de medios físicos como discos duros, es obligatorio usar técnicas de destrucción certificadas y documentar el proceso para asegurar que la información no sea recuperable.</p>`
+            },
+            {
+                title: "Formación y Concienciación",
+                content: `<p><strong>Capacitación Anual:</strong> Todos los consultores reciben una jornada de concientización anual sobre el manejo seguro de la información.</p><p class="mt-4"><strong>Contenido de la Formación:</strong> La formación abarca mejores prácticas, actualizaciones sobre nuevas amenazas, procedimientos en caso de incidentes, y puede incluir talleres, cursos en línea, boletines y evaluaciones para verificar el conocimiento.</p>`
+            }
         ];
         const quizQuestions = [
-            { question: "¿Quién notifica al consultor sobre la terminación de su contrato?", options: ["El líder de proyecto", "Un compañero de equipo", "Recursos Humanos", "El área de Finanzas"], answer: 2 },
-            { question: "¿Qué área es responsable de revocar los accesos a los sistemas internos?", options: ["El consultor mismo", "El área de IT", "Recursos Humanos", "El líder de proyecto"], answer: 1 },
-            { question: "¿Cuál es el propósito de la reunión de transferencia?", options: ["Discutir la liquidación final", "Devolver el equipo de la empresa", "Transferir conocimientos clave al equipo", "Realizar la entrevista de salida"], answer: 2 },
-            { question: "¿Quién organiza la entrevista de salida con el consultor?", options: ["El área de Finanzas", "El líder de proyecto", "El área de IT", "Recursos Humanos"], answer: 3 },
-            { question: "¿Qué debe firmar el consultor al final del proceso para confirmar que no retiene información sensible?", options: ["Un nuevo contrato", "Una declaración de confidencialidad", "Un formulario de devolución de equipos", "La liquidación final"], answer: 1 }
+            { question: "¿Cuál es el principal lugar de almacenamiento de información para los consultores de BlatoRH Group?", options: ["Dispositivos personales", "Servidores en la nube de Google de BlatoRH Group", "Correos electrónicos", "Discos duros externos"], answer: 1 },
+            { question: "Al compartir información clasificada como \"Confidencial\", ¿qué práctica se debe EVITAR?", options: ["Verificar los permisos de acceso", "Usar autenticación adicional", "Compartir directamente con cuentas específicas", "Compartir mediante enlaces públicos"], answer: 3 },
+            { question: "¿Qué tipo de información está PROHIBIDO acceder desde dispositivos móviles?", options: ["Información Pública", "Información Interna", "Información Confidencial", "Toda la información"], answer: 2 },
+            { question: "¿Cuál es el PRIMER paso a seguir en caso de una fuga de datos?", options: ["Intentar recuperar los datos por cuenta propia", "Notificar inmediatamente al supervisor y al equipo de seguridad", "Esperar a que el problema se resuelva solo", "Documentar el incidente para el futuro"], answer: 1 },
+            { question: "¿Quiénes son los únicos que tienen acceso a la información clasificada como \"Confidencial\"?", options: ["Todos los consultores de BlatoRH Group", "Los socios de BlatoRH Group y las personas que ellos designen", "Cualquier cliente con un proyecto activo", "El equipo de soporte de TI"], answer: 1 }
         ];
         
         // Functions
@@ -423,7 +447,7 @@
                     quiz_score: user.quizScore || null,
                     completed_date: user.completed_date || null,
                     approved: user.approved || false
-                }, { onConflict: 'id' }); // onConflict: 'id' es válido si el id es la PK para este registro de progreso
+                }, { onConflict: 'id' });
 
             if (error) {
                 console.error('Error guardando progreso:', error.message);
@@ -433,10 +457,7 @@
                 console.log('Progreso guardado.');
             }
         }
-
-        // ¡MODIFICADO! Esta función ahora no se usa en initializeApp directamente,
-        // la lógica se movió para buscar por email y course_title.
-        // Se mantiene por si se usa en otro lugar, pero su llamado ha sido ajustado.
+        
         async function loadUserProgressFromSupabase(userId) {
             const { data, error } = await supabaseClient
                 .from('users_progress')
@@ -446,7 +467,6 @@
 
             if (error && error.code !== 'PGRST116') { // PGRST116 = No row found
                 console.error('Error cargando progreso por userId:', error.message);
-                // No mostrar mensaje de error si no se encuentra la fila (es un comportamiento esperado)
                 return null;
             }
             return data;
@@ -467,10 +487,10 @@
                 const strippedContent = chapter.content.replace(/<[^>]*>/g, '');
                 wordCount += strippedContent.split(/\s+/).length;
             });
-            const readingTimeInMinutes = wordCount / 200;
-            const extraTime = readingTimeInMinutes * 0.10;
+            const readingTimeInMinutes = wordCount / 200; // Average reading speed
+            const extraTime = readingTimeInMinutes * 0.10; // 10% buffer
             const totalContentDuration = readingTimeInMinutes + extraTime;
-            const quizTime = quizQuestions.length * 1; 
+            const quizTime = quizQuestions.length * 1; // 1 minute per question
             const finalDuration = totalContentDuration + quizTime;
             return Math.ceil(finalDuration);
         }
@@ -490,9 +510,10 @@
                 
                 updateProgressBar();
 
+                // Autoplay after a delay
                 autoPlayTimeout = setTimeout(() => {
                     handleListen();
-                }, 7000);
+                }, 7000); // 7 seconds
             } else {
                 startQuiz();
             }
@@ -656,30 +677,27 @@
                 showScreen('admin');
                 loadApprovedUsers();
             } else {
-                // ¡MODIFICADO! Intentar cargar el último email y course_title usados desde localStorage
-                const storedEmail = localStorage.getItem('blatorh_course_email'); // ¡NUEVO!
-                const storedCourseTitle = localStorage.getItem('blatorh_course_title'); // ¡NUEVO!
+                const storedEmail = localStorage.getItem('blatorh_course_email');
+                const storedCourseTitle = localStorage.getItem('blatorh_course_title');
 
-                // Si encontramos tanto el email como el course_title en localStorage, intentamos cargar el progreso
-                if (storedEmail && storedCourseTitle === COURSE_TITLE) { // ¡MODIFICADO! Verificar si es el mismo curso
+                if (storedEmail && storedCourseTitle === COURSE_TITLE) {
                     try {
                         const { data: userDataFromDB, error: loadError } = await supabaseClient
                             .from('users_progress')
                             .select('*')
-                            .eq('email', storedEmail) // ¡MODIFICADO! Buscar por email
-                            .eq('course_title', COURSE_TITLE) // ¡MODIFICADO! Y por el título del curso actual
+                            .eq('email', storedEmail)
+                            .eq('course_title', COURSE_TITLE)
                             .single();
 
-                        if (loadError && loadError.code !== 'PGRST116') { // PGRST116 = No row found
+                        if (loadError && loadError.code !== 'PGRST116') {
                             throw loadError;
                         }
                         
                         if (userDataFromDB) {
                             currentUser = { ...userDataFromDB };
-                            // Precargar los campos del formulario con los datos cargados
-                            nameInput.value = currentUser.name || ''; // ¡NUEVO!
-                            surnameInput.value = currentUser.surname || ''; // ¡NUEVO!
-                            emailInput.value = currentUser.email || ''; // ¡NUEVO!
+                            nameInput.value = currentUser.name || '';
+                            surnameInput.value = currentUser.surname || '';
+                            emailInput.value = currentUser.email || '';
 
                             if (currentUser.approved) {
                                 showScreen('diploma');
@@ -690,24 +708,18 @@
                                 loadChapter();
                             }
                         } else {
-                            // Si no se encuentra un registro para el email Y el curso actual,
-                            // o si el 'storedCourseTitle' no es para el curso actual,
-                            // o si el storedUserId no existe para este curso (aunque ya no lo usamos para la búsqueda principal aquí)
-                            // limpia el localStorage y muestra la pantalla de login.
-                            localStorage.removeItem('blatorh_course_email'); // ¡MODIFICADO!
-                            localStorage.removeItem('blatorh_course_title'); // ¡MODIFICADO!
+                            localStorage.removeItem('blatorh_course_email');
+                            localStorage.removeItem('blatorh_course_title');
                             showScreen('login');
                         }
                     } catch (err) {
                         console.error('Error cargando progreso al inicio:', err);
                         showMessage('Error al cargar tu progreso. Por favor, intenta iniciar sesión de nuevo.', 'error');
-                        localStorage.removeItem('blatorh_course_email'); // ¡MODIFICADO!
-                        localStorage.removeItem('blatorh_course_title'); // ¡MODIFICADO!
+                        localStorage.removeItem('blatorh_course_email');
+                        localStorage.removeItem('blatorh_course_title');
                         showScreen('login');
                     }
                 } else {
-                    // Si no hay datos en localStorage para este curso, o es un curso diferente,
-                    // mostrar la pantalla de login.
                     showScreen('login');
                     courseDurationEstimate.textContent = `Duración: ${calculateCourseDuration()} min`;
                 }
@@ -716,9 +728,9 @@
         
         function updateDiplomaContent() {
              if (currentUser) {
-                diplomaParticipantName.textContent = `${currentUser.name || ''} ${currentUser.surname || ''}`.trim();
-                diplomaDate.textContent = currentUser.completed_date;
-            }
+                 diplomaParticipantName.textContent = `${currentUser.name || ''} ${currentUser.surname || ''}`.trim();
+                 diplomaDate.textContent = currentUser.completed_date;
+             }
         }
 
         async function downloadDiploma() {
@@ -732,7 +744,7 @@
                 const imgData = canvas.toDataURL('image/png');
                 const pdf = new jsPDF({ orientation: 'landscape', unit: 'px', format: [canvas.width, canvas.height] });
                 pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
-                pdf.save(`Diploma_BlatoRH_${currentUser.name}_${currentUser.surname}_${COURSE_TITLE.replace(/\s/g, '_')}.pdf`); // ¡MODIFICADO! Nombre de archivo más específico
+                pdf.save(`Diploma_BlatoRH_${currentUser.name}_${currentUser.surname}_${COURSE_TITLE.replace(/\s/g, '_')}.pdf`);
             } catch (error) {
                 showMessage('Error al generar el diploma en PDF.', 'error');
             } finally {
@@ -743,13 +755,12 @@
         
         async function restartCourse(fullRestart = true) {
              if (fullRestart) {
-                // ¡MODIFICADO! Eliminar solo los datos de este curso del localStorage
                 localStorage.removeItem('blatorh_course_email');
                 localStorage.removeItem('blatorh_course_title');
                 currentUser = null;
                 window.location.reload();
              } else {
-                startQuiz();
+                 startQuiz();
              }
         }
         
@@ -757,7 +768,8 @@
             const { data: users, error } = await supabaseClient
                 .from('users_progress')
                 .select('*')
-                .eq('approved', true);
+                .eq('approved', true)
+                .eq('course_title', COURSE_TITLE); // Only show for this course
 
             if (error) {
                 console.error('Error cargando usuarios aprobados:', error.message);
@@ -791,7 +803,7 @@
                 surname: row.cells[1].textContent,
                 email: row.cells[2].textContent,
                 quizScore: row.cells[3].textContent,
-                completedDate: row.cells[4].textContent // Mantengo completedDate aquí si el exportador lo espera así
+                completedDate: row.cells[4].textContent
             }));
 
             if (users.length === 0 || (users.length === 1 && users[0].name === 'No hay usuarios aprobados aún.')) {
@@ -810,7 +822,7 @@
             const encodedUri = encodeURI(csvContent);
             const link = document.createElement("a");
             link.setAttribute("href", encodedUri);
-            link.setAttribute("download", "usuarios_aprobados_blatorh.csv");
+            link.setAttribute("download", `Aprobados_${COURSE_TITLE.replace(/\s/g, '_')}.csv`);
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
@@ -818,6 +830,7 @@
         
         function downloadResourcePdf() {
             try {
+                // NOTE: This URL should be updated to point to the new course's PDF material if available.
                 const pdfUrl = 'https://raw.githubusercontent.com/BLHTR/CursoSeguridad/main/Procedimiento%20para%20el%20Reporte%20de%20Incidentes%20de%20Seguridad.pdf';
                 window.open(pdfUrl, '_blank');
             } catch (error) {
@@ -838,32 +851,28 @@
             const email = emailInput.value.trim();
 
             try {
-                // ¡MODIFICADO! Buscar usuario por email Y course_title
                 const { data: existingUser, error: findError } = await supabaseClient
                     .from('users_progress')
-                    .select('id, progress, approved, name, surname, completed_date, quiz_score') // Asegúrate de obtener todos los campos necesarios
+                    .select('id, progress, approved, name, surname, completed_date, quiz_score')
                     .eq('email', email)
-                    .eq('course_title', COURSE_TITLE) // ¡CLAVE! Filtrar por el título del curso actual
+                    .eq('course_title', COURSE_TITLE)
                     .single();
 
-                if (findError && findError.code !== 'PGRST116') { // PGRST116 = No row found (esto es esperado si no existe)
-                    throw findError; // Otros errores sí son problemáticos
+                if (findError && findError.code !== 'PGRST116') {
+                    throw findError;
                 }
 
                 if (existingUser) {
-                    // Si el usuario existe para ESTE curso, cargamos sus datos existentes
                     currentUser = {
                         ...existingUser,
-                        // Forzar la actualización de nombre y apellido si el usuario los cambia en el formulario
                         name: name,
                         surname: surname,
-                        email: email, // Asegurar que el email actual se use
-                        course_title: COURSE_TITLE // Asegurar que el título del curso sea el actual
+                        email: email,
+                        course_title: COURSE_TITLE
                     };
                 } else {
-                    // Si no existe un registro para ESTE usuario Y ESTE curso, creamos uno nuevo
                     currentUser = {
-                        id: crypto.randomUUID(), // Generamos un nuevo ID UUID
+                        id: crypto.randomUUID(),
                         name: name,
                         surname: surname,
                         email: email,
@@ -874,19 +883,13 @@
                         approved: false
                     };
                 }
-
-                // Guardar/Actualizar el progreso del usuario en Supabase
-                // onConflict: ['email', 'course_title'] es más robusto si quieres que el UPSERT sepa que esos campos son únicos.
-                // Sin embargo, como el 'id' es PK, 'onConflict: 'id'' está bien si el ID ya se maneja en el frontend de forma única por curso.
-                // Pero si hay conflictos lógicos, el `id` generará nuevos registros si la combinación email/course_title ya tiene un id diferente.
-                // Con la restricción UNIQUE en DB, esto es menos crítico, ya que la DB lo impedirá.
+                
                 await saveUserProgressToSupabase(currentUser);
-
-                // ¡MODIFICADO! Almacenar email y course_title en localStorage en lugar de solo userId
+                
                 localStorage.setItem('blatorh_course_email', currentUser.email);
-                localStorage.setItem('blatorh_course_title', currentUser.course_title); // ¡NUEVO!
+                localStorage.setItem('blatorh_course_title', currentUser.course_title);
 
-                if (currentUser.approved && currentUser.course_title === COURSE_TITLE) { // ¡MODIFICADO! Doble check para el diploma
+                if (currentUser.approved && currentUser.course_title === COURSE_TITLE) {
                     showScreen('diploma');
                     updateDiplomaContent();
                 } else {
@@ -897,13 +900,11 @@
 
             } catch (err) {
                 console.error('Error en el ingreso:', err);
-                // Si el error es una violación de restricción única (por ejemplo, si se intenta insertar un duplicado de email/course_title
-                // que no fue capturado por la lógica existingUser por algún motivo), mostrar un mensaje más específico.
-                const errorMessage = err.message || 'Ocurrió un problema al conectar con la base de datos. Revisa las políticas de seguridad (RLS) en Supabase o la consola del navegador para más detalles.';
-                if (err.code === '23505') { // Código de error SQL para violación de restricción única
+                const errorMessage = err.message || 'Ocurrió un problema al conectar con la base de datos.';
+                if (err.code === '23505') {
                      showMessage(`Error: Ya existe un registro para este email en este curso.`, 'error');
                 } else {
-                    showMessage(`Error: ${errorMessage}`, 'error');
+                     showMessage(`Error: ${errorMessage}`, 'error');
                 }
             } finally {
                 loginSubmitBtn.disabled = false;

@@ -3,967 +3,169 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Curso BlatoRH Group - Manejo e Intercambio de Información para Consultores</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <title>Cursos sobre Seguridad de la Información - BlatoRH Group</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
-        @keyframes pulse-glow {
-            0%, 100% { transform: scale(1); box-shadow: 0 0 12px rgba(251, 191, 36, 0.5); }
-            50% { transform: scale(1.03); box-shadow: 0 0 24px rgba(251, 191, 36, 0.8); }
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes gradient-animation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        :root {
+            --dark-bg: #0a192f;
+            --light-slate: #ccd6f6;
+            --slate: #8892b0;
+            --accent: #fbbf24;
+            --card-border: rgba(136, 146, 176, 0.2);
         }
         html { scroll-behavior: smooth; }
         body {
+            background-color: var(--dark-bg);
+            color: var(--light-slate);
             font-family: 'Inter', sans-serif;
-            background-color: #0a192f;
-            color: #e6f1ff;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
             margin: 0;
-        }
-        .app-container {
-            width: 100%;
-            flex-grow: 1;
+            padding: 0;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-        .card {
-            background-color: rgba(17, 34, 64, 0.85);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(136, 146, 176, 0.2);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-            transition: all 0.3s ease;
-            animation: fadeIn 0.6s ease-out forwards;
-        }
-        .btn { @apply font-bold py-3 px-6 rounded-lg transition-all duration-300 ease-in-out transform focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900; }
-        .btn-primary { @apply bg-amber-400 text-slate-900 hover:bg-amber-300 focus:ring-amber-400 shadow-lg shadow-amber-500/20; }
-        .btn-primary:disabled { @apply bg-amber-800 text-slate-400 cursor-not-allowed transform-none shadow-none; }
-        .btn-secondary { @apply bg-slate-700 text-white hover:bg-slate-600 focus:ring-slate-500; }
-        .pulsing-button { animation: pulse-glow 2.5s infinite ease-in-out; }
-        .input-field {
-            background-color: #1e293b;
-            border: 2px solid #334155;
-            color: #e2e8f0;
-            @apply mt-2 block w-full px-4 py-3 rounded-lg shadow-sm transition-all duration-300;
-        }
-        .input-field:focus { @apply outline-none ring-2 ring-amber-400 border-amber-400 bg-slate-900; }
-        .progress-bar-container { @apply w-full bg-slate-700 rounded-full h-3 overflow-hidden; }
-        .progress-bar { @apply bg-amber-400 h-3 rounded-full transition-all duration-500 ease-out; }
-        #chapter-content { max-height: 55vh; overflow-y: auto; padding-right: 1rem; scroll-behavior: smooth; }
-        #chapter-content::-webkit-scrollbar { width: 8px; }
-        #chapter-content::-webkit-scrollbar-track { background: #1e293b; border-radius: 10px; }
-        #chapter-content::-webkit-scrollbar-thumb { background: #fbbF24; border-radius: 10px; }
-        #chapter-content::-webkit-scrollbar-thumb:hover { background: #f59e0b; }
-        .quiz-option {
-            background-color: #1e293b;
-            border: 2px solid #334155;
-            @apply flex items-center w-full text-left p-4 rounded-lg cursor-pointer hover:bg-slate-700 hover:border-amber-400 transition-all duration-200 transform hover:scale-102;
-        }
-        .quiz-option.selected { border-color: #fbbF24; background-color: #334155; transform: scale(1.02); }
-        .hidden { display: none; }
-        .screen { width: 100%; }
-
-        /* New Login Screen Styles */
-        .login-grid {
-            display: grid;
-            grid-template-columns: 1fr;
             min-height: 100vh;
         }
-        @media (min-width: 1024px) {
-            .login-grid {
-                grid-template-columns: 1fr 1fr;
-            }
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
         }
-        .login-promo {
-            background: linear-gradient(-45deg, #0a192f, #172a46, #4a0e99, #23d5ab);
-            background-size: 400% 400%;
-            animation: gradient-animation 15s ease infinite;
-            padding: 2rem;
-        }
-
-        /* Diploma Styles */
-        #diploma-content {
-            background-color: #fdfbf4;
-            color: #3a2d0d;
-            border: 10px solid #c5a358;
-            padding: 2rem;
-            position: relative;
-            box-shadow: 0 0 20px rgba(0,0,0,0.5);
-            background-image: url('data:image/svg+xml,%3Csvg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-48 0c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48-25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7z" fill="%23d4b979" fill-opacity="0.1"/%3E%3C/svg%3E');
-        }
-        .diploma-title { font-family: 'Playfair Display', serif; color: #8c6b22; }
-        .diploma-text { font-family: 'Merriweather', serif; }
-        .diploma-seal {
-            position: absolute;
-            bottom: 3.5rem;
-            right: 2.5rem;
-            width: 100px;
-            height: 100px;
-            background: radial-gradient(ellipse at center, #d4af37 0%,#b48811 100%);
-            border-radius: 50%;
-            box-shadow: 0 0 10px rgba(0,0,0,0.5), inset 0 0 5px rgba(255,255,255,0.3);
+        .main-header {
+            padding: 2rem 0;
             display: flex;
             align-items: center;
-            justify-content: center;
+            gap: 0.75rem;
         }
-        .diploma-seal-inner {
-            width: 80px;
-            height: 80px;
-            border: 2px solid #fff;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .logo-icon {
+            height: 2.5rem;
+            width: 2.5rem;
+            color: var(--accent);
+        }
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
             color: white;
-            font-size: 0.7rem;
-            font-weight: bold;
+        }
+        .hero-section {
             text-align: center;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+            padding: 3rem 0 2rem;
         }
-        .signature-line {
-            border-top: 2px solid #8c6b22;
-            width: 250px;
-            margin-top: 3rem;
+        .hero-section h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            color: white;
+            margin-bottom: 0.5rem;
         }
-        .signature-text { font-family: 'Merriweather', serif; font-style: italic; }
+        .hero-section p {
+            font-size: 1.1rem;
+            color: var(--slate);
+            max-width: 650px;
+            margin: 0 auto;
+        }
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 2rem;
+            padding-bottom: 4rem;
+        }
+        .course-card {
+            background-color: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+        .course-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
+        }
+        .course-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            color: var(--light-slate);
+        }
+        .course-duration {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        .course-btn {
+            display: inline-block;
+            padding: 0.75rem 1.25rem;
+            background-color: var(--accent);
+            color: #0a192f;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background 0.2s ease-in-out;
+        }
+        .course-btn:hover {
+            background-color: #d8a501;
+        }
+        .main-footer {
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 1px solid var(--card-border);
+            color: var(--slate);
+            font-size: 0.9rem;
+            margin-top: auto;
+        }
     </style>
 </head>
-<body class="antialiased">
-    
-    <header id="app-header" class="w-full max-w-5xl mx-auto p-4 md:p-6 hidden">
-        <div class="flex items-center space-x-3">
-            <svg class="h-10 w-10 text-amber-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.286zm0 13.036h.008v.008h-.008v-.008z" />
-            </svg>
-            <span class="text-2xl font-bold text-white">BlatoRH Group</span>
-        </div>
+<body>
+    <header class="main-header container">
+        <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.286zm0 13.036h.008v.008h-.008v-.008z" />
+        </svg>
+        <span class="logo-text">BlatoRH Group</span>
     </header>
+    <main class="container" style="flex: 1 0 auto;">
+        <section class="hero-section">
+            <h1>Cursos sobre Seguridad de la Información</h1>
+            <p>Capacitaciones esenciales para fortalecer la cultura de seguridad y proteger los activos digitales.</p>
+        </section>
+        <section>
+            <div class="card-grid">
 
-    <main class="app-container">
-        <div class="main-content-area w-full">
-
-            <div id="diploma-loading" class="hidden fixed inset-0 bg-black/70 z-50 flex items-center justify-center">
-                <div class="text-center p-6 bg-slate-800 rounded-xl">
-                    <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-amber-500 mx-auto mb-4"></div>
-                    <p class="text-white">Generando diploma...</p>
+                <div class="course-card">
+                    <h3>Proceso de reporte de incidentes de seguridad</h3>
+                    <p class="course-duration">6 minutos</p>
+                    <a href="https://blhtr.github.io/CursoReportedeIncidentes/" target="_blank" class="course-btn">Ir al Curso</a>
                 </div>
+    
+                <div class="course-card">
+                    <h3>Manual de Seguridad de la informacion para consultores</h3>
+                    <p class="course-duration">7 minutos</p>
+                    <a href="https://blhtr.github.io/CursoSeguridadparaConsultores/" target="_blank" class="course-btn">Ir al Curso</a>
+                </div>
+    
+                <div class="course-card">
+                    <h3>Manejo e Intercambio de Información para Consultores</h3>
+                    <p class="course-duration">7 minutos</p>
+                    <a href="https://blhtr.github.io/CursoManejoeIntecambioInformacion/" target="_blank" class="course-btn">Ir al Curso</a>
+                </div>
+    
+                <div class="course-card">
+                    <h3>Manual de conducta del colaborador</h3>
+                    <p class="course-duration">7 minutos</p>
+                    <a href="https://blhtr.github.io/ManualdeConductadelColaborador/" target="_blank" class="course-btn">Ir al Curso</a>
+                </div>
+    
+                <div class="course-card">
+                    <h3>Instructivo para el Uso y Cuidado de Dispositivos Corporativos</h3>
+                    <p class="course-duration">6 minutos</p>
+                    <a href="https://blhtr.github.io/CursoUsoyCuidadodeDispositivos/" target="_blank" class="course-btn">Ir al Curso</a>
+                </div>
+    
             </div>
-
-            <div id="message-box" class="fixed top-5 left-1/2 -translate-x-1/2 mt-4 p-4 rounded-lg shadow-lg text-white z-50 hidden" role="alert">
-                <span id="message-text"></span>
-                <button onclick="document.getElementById('message-box').classList.add('hidden')" class="ml-4 font-bold">&times;</button>
-            </div>
-
-            <div id="login-screen" class="screen w-full min-h-screen">
-                <div class="login-grid">
-                    <div class="login-promo hidden lg:flex flex-col justify-center items-start p-12">
-                         <img src="./blatorh.png" alt="BlatoRH Logo" class="h-16 w-auto mb-8" onerror="this.src='https://placehold.co/200x64/FFFFFF/0a192f?text=BlatoRH'; this.onerror=null;">
-                        <h1 class="text-5xl font-bold text-white leading-tight mt-4">Manejo e Intercambio de Información para Consultores</h1>
-                        <p class="text-slate-300 mt-4 text-lg">Proteger la información de nuestros clientes y de la empresa es una responsabilidad fundamental. Este curso te guiará en las mejores prácticas.</p>
-                    </div>
-                    <div class="flex flex-col justify-center items-center p-8 bg-slate-900/50">
-                        <div class="w-full max-w-md">
-                             <div class="text-center lg:hidden mb-8">
-                                 <h2 class="text-3xl md:text-4xl font-bold text-white">BlatoRH Group</h2>
-                                 <p class="mt-2 text-slate-300">Manejo e Intercambio de Información para Consultores</p>
-                             </div>
-                            <p class="text-center text-slate-300 mb-2">Ingresa tus datos para comenzar.</p>
-                            <div class="text-center mb-6">
-                                <div class="inline-flex items-center bg-slate-800/50 px-3 py-1.5 rounded-full text-sm">
-                                    <svg class="w-5 h-5 mr-2 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/></svg>
-                                    <span id="course-duration-estimate"></span>
-                                </div>
-                            </div>
-                            <form id="login-form" class="space-y-6">
-                                <div>
-                                    <label for="name" class="block text-sm font-medium text-slate-300">Nombre</label>
-                                    <input type="text" id="name" class="input-field" required>
-                                </div>
-                                <div>
-                                    <label for="surname" class="block text-sm font-medium text-slate-300">Apellido</label>
-                                    <input type="text" id="surname" class="input-field" required>
-                                </div>
-                                <div>
-                                    <label for="email" class="block text-sm font-medium text-slate-300">Email Corporativo</label>
-                                    <input type="email" id="email" class="input-field" required pattern=".*@blatorh\.com$">
-                                </div>
-                                <button type="submit" id="login-submit-btn" class="btn btn-primary w-full !mt-8 pulsing-button">
-                                    <span class="btn-text">Ingresar al Curso</span>
-                                    <span class="btn-loader hidden animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-slate-900 mx-auto"></span>
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="course-screen" class="card screen hidden w-full max-w-3xl mx-auto p-6 md:p-8">
-                <div class="mb-6">
-                    <p id="chapter-number" class="text-amber-400 font-semibold"></p>
-                    <h2 id="chapter-title" class="text-3xl md:text-4xl font-bold mt-1"></h2>
-                </div>
-                <div class="progress-bar-container mb-6">
-                    <div id="progress-bar" class="progress-bar"></div>
-                </div>
-                <div id="chapter-content" class="prose prose-invert max-w-none text-slate-300 text-lg leading-relaxed"></div>
-                <div class="flex flex-col sm:flex-row justify-between items-center mt-8 border-t border-slate-700 pt-6 space-y-4 sm:space-y-0">
-                    <button id="listen-btn" class="btn btn-secondary w-full sm:w-auto">Escuchar Audio</button>
-                    <button id="next-btn" class="btn btn-primary w-full sm:w-auto" disabled>Siguiente</button>
-                </div>
-            </div>
-
-            <div id="quiz-screen" class="card screen hidden w-full max-w-2xl mx-auto p-6 md:p-8">
-                <div class="text-center mb-6">
-                    <h2 class="text-3xl font-bold">Evaluación Final</h2>
-                    <p class="text-slate-300 mt-1">Demuestra lo que has aprendido.</p>
-                </div>
-                <div class="progress-bar-container my-6">
-                    <div id="quiz-progress-bar" class="progress-bar"></div>
-                </div>
-                <div id="quiz-content" class="min-h-[30vh]"></div>
-                <div id="quiz-navigation" class="flex justify-between items-center mt-8">
-                    <button id="prev-question-btn" class="btn btn-secondary">Anterior</button>
-                    <button id="next-question-btn" class="btn btn-primary">Siguiente</button>
-                </div>
-                 <button id="submit-quiz-btn" class="btn btn-primary w-full mt-8 hidden">Finalizar y Ver Resultados</button>
-            </div>
-            
-            <div id="result-screen" class="card screen hidden text-center w-full max-w-md mx-auto p-6 md:p-8">
-                 <h2 class="text-3xl font-bold mb-4">Resultados</h2>
-                 <p class="text-6xl font-bold mb-4" id="result-score"></p>
-                 <p class="text-xl mb-8" id="result-message"></p>
-                 <div id="result-summary" class="space-y-2 text-left max-w-md mx-auto mb-8"></div>
-                 <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-                     <button id="restart-quiz-btn" class="btn btn-secondary">Reintentar</button>
-                     <button id="diploma-btn" class="btn btn-primary hidden">Ver Diploma</button>
-                 </div>
-            </div>
-
-            <div id="diploma-screen" class="card screen hidden w-full max-w-4xl mx-auto p-6 md:p-8">
-                <h2 class="text-3xl font-bold mb-6 text-center">¡Felicitaciones, has completado el curso!</h2>
-                <div id="diploma-content-wrapper" class="p-2 bg-slate-800 rounded-lg">
-                    <div id="diploma-content">
-                        <div class="text-center">
-                            <p class="diploma-text text-xl">Certificado de Finalización</p>
-                            <h1 class="diploma-title text-5xl my-4">DIPLOMA</h1>
-                            <p class="diploma-text text-lg">Este certificado es otorgado a:</p>
-                            <p class="diploma-text text-4xl font-bold my-6" id="diploma-participant-name" style="font-family: 'Playfair Display', serif;"></p>
-                            <p class="diploma-text text-lg">Por haber completado exitosamente el curso:</p>
-                            <p class="diploma-text text-2xl font-bold my-4">"Manejo e Intercambio de Información para Consultores"</p>
-                            <p class="diploma-text text-lg">Otorgado en la fecha:</p>
-                            <p class="diploma-text text-xl font-semibold" id="diploma-date"></p>
-                        </div>
-                        <div class="flex justify-center mt-8">
-                            <div class="text-center">
-                                <p class="signature-text text-2xl">BlatoRH Group</p>
-                                <div class="signature-line"></div>
-                                <p class="diploma-text font-bold">Firma Autorizada</p>
-                            </div>
-                        </div>
-                        <div class="diploma-seal">
-                            <div class="diploma-seal-inner">CURSO APROBADO</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex flex-col sm:flex-row justify-center mt-8 space-y-4 sm:space-y-0 sm:space-x-4">
-                    <button id="download-diploma-btn" class="btn btn-primary">Descargar Diploma (PDF)</button>
-                    <button onclick="downloadResourcePdf()" class="btn btn-secondary">Descargar Material (PDF)</button>
-                    <button id="restart-course-btn" class="btn btn-secondary">Reiniciar Curso</button>
-                </div>
-            </div>
-
-            <div id="admin-panel" class="card screen hidden w-full max-w-4xl mx-auto p-6 md:p-8">
-                 <h2 class="text-2xl font-bold mb-6 text-center">Panel de Administración</h2>
-                 <button id="export-csv-btn" class="btn btn-primary mb-4">Exportar Aprobados (CSV)</button>
-                 <div class="overflow-x-auto">
-                     <table class="min-w-full bg-slate-800 rounded-lg shadow-md">
-                         <thead class="bg-slate-700 text-slate-300 uppercase text-sm leading-normal">
-                             <tr>
-                                 <th class="py-3 px-6 text-left">Nombre</th>
-                                 <th class="py-3 px-6 text-left">Apellido</th>
-                                 <th class="py-3 px-6 text-left">Email</th>
-                                 <th class="py-3 px-6 text-left">Score</th>
-                                 <th class="py-3 px-6 text-left">Fecha</th>
-                             </tr>
-                         </thead>
-                         <tbody id="approved-users-table-body" class="text-slate-400 text-sm font-light"></tbody>
-                     </table>
-                 </div>
-            </div>
-
-        </div>
+        </section>
     </main>
-
-    <script>
-        // Configuración de Supabase
-        const SUPABASE_URL = 'https://zaxyokejvwupwmbhenso.supabase.co';
-        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpheHlva2Vqdnd1cHdtYmhlbnNvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI4NzMwNDYsImV4cCI6MjA2ODQ0OTA0Nn0.boNwgjYadjo6deO_YfKbLCGt0ug4H012D2KuhX0WZB8';
-        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-        
-        const COURSE_TITLE = "Manejo e Intercambio de Información para Consultores";
-
-        // DOM Elements
-        const appHeader = document.getElementById('app-header');
-        const screens = {
-            login: document.getElementById('login-screen'),
-            course: document.getElementById('course-screen'),
-            quiz: document.getElementById('quiz-screen'),
-            result: document.getElementById('result-screen'),
-            diploma: document.getElementById('diploma-screen'),
-            admin: document.getElementById('admin-panel'),
-        };
-        const loginForm = document.getElementById('login-form');
-        const loginSubmitBtn = document.getElementById('login-submit-btn');
-        const nameInput = document.getElementById('name');
-        const surnameInput = document.getElementById('surname');
-        const emailInput = document.getElementById('email');
-        const courseDurationEstimate = document.getElementById('course-duration-estimate');
-        const chapterNumberDisplay = document.getElementById('chapter-number');
-        const progressBar = document.getElementById('progress-bar');
-        const chapterTitleDisplay = document.getElementById('chapter-title');
-        const chapterContentDisplay = document.getElementById('chapter-content');
-        const listenBtn = document.getElementById('listen-btn');
-        const nextBtn = document.getElementById('next-btn');
-        const quizProgressBar = document.getElementById('quiz-progress-bar');
-        const quizContent = document.getElementById('quiz-content');
-        const prevQuestionBtn = document.getElementById('prev-question-btn');
-        const nextQuestionBtn = document.getElementById('next-question-btn');
-        const submitQuizBtn = document.getElementById('submit-quiz-btn');
-        const resultScore = document.getElementById('result-score');
-        const resultMessage = document.getElementById('result-message');
-        const resultSummary = document.getElementById('result-summary');
-        const restartQuizBtn = document.getElementById('restart-quiz-btn');
-        const diplomaBtn = document.getElementById('diploma-btn');
-        const diplomaParticipantName = document.getElementById('diploma-participant-name');
-        const diplomaDate = document.getElementById('diploma-date');
-        const downloadDiplomaBtn = document.getElementById('download-diploma-btn');
-        const restartCourseBtn = document.getElementById('restart-course-btn');
-        const exportCsvBtn = document.getElementById('export-csv-btn');
-        const approvedUsersTableBody = document.getElementById('approved-users-table-body');
-        const messageBox = document.getElementById('message-box');
-        const messageText = document.getElementById('message-text');
-        const diplomaLoading = document.getElementById('diploma-loading');
-
-        // State
-        let currentUser = null;
-        let currentChapterIndex = 0;
-        let currentQuestionIndex = 0;
-        let speechQueue = [];
-        let wasManuallyStopped = false;
-        let selectedVoice = null;
-        let userAnswers = new Array(5).fill(null);
-        let autoPlayTimeout = null;
-
-        // Data
-        const chapters = [
-            { 
-                title: "Almacenamiento de Información", 
-                content: `<p><strong>Ubicación del Almacenamiento:</strong> Los consultores deben almacenar toda la información relacionada con el trabajo exclusivamente en los servidores en la nube de Google proporcionados por BlatoRH Group.</p><p class="mt-4"><strong>Organización:</strong> La información debe organizarse en carpetas por temas. El propietario de cada carpeta decide si el contenido es de uso común dentro de BlatoRH o si tiene acceso restringido a miembros específicos.</p><p class="mt-4"><strong>Clasificación Sugerida:</strong> Se recomienda clasificar la información en tres niveles: <strong>Pública</strong> (accesible para todos), <strong>Interna</strong> (solo para miembros de BlatoRH) y <strong>Confidencial</strong> (altamente sensible y con acceso restringido).</p>`
-            },
-            { 
-                title: "Intercambio de Información", 
-                content: `<p><strong>Herramientas Aprobadas:</strong> Para compartir información se deben utilizar las herramientas de la suite de Google (Drive, Docs, Sheets) y otras herramientas homologadas por la empresa como Excel, PowerPoint y Word.</p><p class="mt-4"><strong>Compartir con Terceros:</strong> La información solo debe compartirse con clientes aprobados, nunca con consultores externos a BlatoRH Group.</p><p class="mt-4"><strong>Manejo de Información Confidencial:</strong> Para compartir datos confidenciales, es mandatorio usar autenticación adicional, verificar siempre los permisos de acceso y <strong>nunca usar enlaces públicos</strong>. La información debe compartirse directamente a las cuentas específicas.</p>`
-            },
-            { 
-                title: "Acceso y Control de Información", 
-                content: `<p><strong>Acceso a Información Confidencial:</strong> Este tipo de información debe ser accesible únicamente por los socios de BlatoRH Group y las personas que ellos explícitamente designen.</p><p class="mt-4"><strong>Proceso de Offboarding:</strong> Cuando un consultor deja la empresa, se deben revocar inmediatamente todos sus accesos. Además, es crucial asegurar que el consultor no retiene ninguna copia de información confidencial en sus dispositivos personales.</p>`
-            },
-            { 
-                title: "Uso de Información en Dispositivos Móviles", 
-                content: `<p><strong>Restricción Principal:</strong> Está terminantemente prohibido acceder a información clasificada como <strong>Confidencial</strong> desde dispositivos móviles para minimizar riesgos.</p><p class="mt-4"><strong>Acceso Permitido:</strong> Se puede acceder a información Pública e Interna desde móviles, siempre que el dispositivo cuente con medidas de seguridad básicas (bloqueo de pantalla, sistema operativo actualizado) y se evite el uso de redes Wi-Fi públicas no seguras.</p>`
-            },
-            { 
-                title: "Backup y Recuperación de Datos", 
-                content: `<p><strong>Política de Backup:</strong> Los respaldos son gestionados automáticamente por Google. Los consultores no necesitan realizar acciones adicionales para respaldar la información.</p><p class="mt-4"><strong>Proceso de Recuperación:</strong> En caso de pérdida de datos, se debe contactar inmediatamente al equipo de soporte de TI de BlatoRH Group. No se debe intentar restaurar datos desde fuentes no autorizadas.</p>`
-            },
-            { 
-                title: "Manejo de Información en Caso de Incidentes", 
-                content: `<p><strong>Notificación Inmediata:</strong> Ante una fuga de datos o un acceso no autorizado, el consultor debe notificar inmediatamente a su supervisor y al equipo de seguridad de la información.</p><p class="mt-4"><strong>Procedimiento a Seguir:</strong> Se debe proporcionar un informe detallado del incidente y seguir los procedimientos internos para contener, documentar y mitigar el impacto.</p>`
-            },
-            {
-                title: "Eliminación Segura de Información",
-                content: `<p><strong>Eliminación Digital:</strong> Para la información confidencial en formato digital, se deben usar las herramientas de eliminación permanente que proporciona Google.</p><p class="mt-4"><strong>Eliminación Física:</strong> Al deshacerse de medios físicos como discos duros, es obligatorio usar técnicas de destrucción certificadas y documentar el proceso para asegurar que la información no sea recuperable.</p>`
-            },
-            {
-                title: "Formación y Concienciación",
-                content: `<p><strong>Capacitación Anual:</strong> Todos los consultores reciben una jornada de concientización anual sobre el manejo seguro de la información.</p><p class="mt-4"><strong>Contenido de la Formación:</strong> La formación abarca mejores prácticas, actualizaciones sobre nuevas amenazas, procedimientos en caso de incidentes, y puede incluir talleres, cursos en línea, boletines y evaluaciones para verificar el conocimiento.</p>`
-            }
-        ];
-        const quizQuestions = [
-            { question: "¿Cuál es el principal lugar de almacenamiento de información para los consultores de BlatoRH Group?", options: ["Dispositivos personales", "Servidores en la nube de Google de BlatoRH Group", "Correos electrónicos", "Discos duros externos"], answer: 1 },
-            { question: "Al compartir información clasificada como \"Confidencial\", ¿qué práctica se debe EVITAR?", options: ["Verificar los permisos de acceso", "Usar autenticación adicional", "Compartir directamente con cuentas específicas", "Compartir mediante enlaces públicos"], answer: 3 },
-            { question: "¿Qué tipo de información está PROHIBIDO acceder desde dispositivos móviles?", options: ["Información Pública", "Información Interna", "Información Confidencial", "Toda la información"], answer: 2 },
-            { question: "¿Cuál es el PRIMER paso a seguir en caso de una fuga de datos?", options: ["Intentar recuperar los datos por cuenta propia", "Notificar inmediatamente al supervisor y al equipo de seguridad", "Esperar a que el problema se resuelva solo", "Documentar el incidente para el futuro"], answer: 1 },
-            { question: "¿Quiénes son los únicos que tienen acceso a la información clasificada como \"Confidencial\"?", options: ["Todos los consultores de BlatoRH Group", "Los socios de BlatoRH Group y las personas que ellos designen", "Cualquier cliente con un proyecto activo", "El equipo de soporte de TI"], answer: 1 }
-        ];
-        
-        // Functions
-        function showScreen(screenName) {
-            Object.values(screens).forEach(screen => {
-                if (screen && !screen.classList.contains('hidden')) screen.classList.add('hidden');
-            });
-            if (screens[screenName]) screens[screenName].classList.remove('hidden');
-            
-            if (screenName !== 'login') {
-                appHeader.classList.remove('hidden');
-            } else {
-                appHeader.classList.add('hidden');
-            }
-        }
-
-        function showMessage(message, type) {
-            messageText.textContent = message;
-            messageBox.className = `fixed top-5 left-1/2 -translate-x-1/2 mt-4 p-4 rounded-lg shadow-lg text-white z-50 ${type === 'success' ? 'bg-green-600' : 'bg-red-600'}`;
-            messageBox.classList.remove('hidden');
-            setTimeout(() => { messageBox.classList.add('hidden'); }, 5000); 
-        }
-
-        async function saveUserProgressToSupabase(user) {
-            const { data, error } = await supabaseClient
-                .from('users_progress')
-                .upsert({ 
-                    id: user.id,
-                    name: user.name || '',
-                    surname: user.surname || '',
-                    email: user.email,
-                    course_title: user.course_title,
-                    progress: user.progress || 0,
-                    quiz_score: user.quizScore || null,
-                    completed_date: user.completed_date || null,
-                    approved: user.approved || false
-                }, { onConflict: 'id' });
-
-            if (error) {
-                console.error('Error guardando progreso:', error.message);
-                showMessage('Error guardando progreso: ' + error.message, 'error');
-                throw error;
-            } else {
-                console.log('Progreso guardado.');
-            }
-        }
-        
-        async function loadUserProgressFromSupabase(userId) {
-            const { data, error } = await supabaseClient
-                .from('users_progress')
-                .select('*')
-                .eq('id', userId)
-                .single();
-
-            if (error && error.code !== 'PGRST116') { // PGRST116 = No row found
-                console.error('Error cargando progreso por userId:', error.message);
-                return null;
-            }
-            return data;
-        }
-
-        function updateProgressBar() {
-            const progress = ((currentChapterIndex + 1) / chapters.length) * 100;
-            progressBar.style.width = `${progress}%`;
-            if (currentUser) {
-                currentUser.progress = currentChapterIndex;
-                saveUserProgressToSupabase(currentUser).catch(err => console.error("Failed to save progress on update", err));
-            }
-        }
-        
-        function calculateCourseDuration() {
-            let wordCount = 0;
-            chapters.forEach(chapter => {
-                const strippedContent = chapter.content.replace(/<[^>]*>/g, '');
-                wordCount += strippedContent.split(/\s+/).length;
-            });
-            const readingTimeInMinutes = wordCount / 200; // Average reading speed
-            const extraTime = readingTimeInMinutes * 0.10; // 10% buffer
-            const totalContentDuration = readingTimeInMinutes + extraTime;
-            const quizTime = quizQuestions.length * 1; // 1 minute per question
-            const finalDuration = totalContentDuration + quizTime;
-            return Math.ceil(finalDuration);
-        }
-        
-        function loadChapter() {
-            if (autoPlayTimeout) clearTimeout(autoPlayTimeout);
-            
-            if (currentChapterIndex < chapters.length) {
-                const chapter = chapters[currentChapterIndex];
-                chapterNumberDisplay.textContent = `Capítulo ${currentChapterIndex + 1} de ${chapters.length}`;
-                chapterTitleDisplay.textContent = chapter.title;
-                chapterContentDisplay.innerHTML = chapter.content;
-                
-                nextBtn.disabled = true;
-                nextBtn.classList.remove('pulsing-button');
-                listenBtn.textContent = "Escuchar Audio";
-                
-                updateProgressBar();
-
-                // Autoplay after a delay
-                autoPlayTimeout = setTimeout(() => {
-                    handleListen();
-                }, 7000); // 7 seconds
-            } else {
-                startQuiz();
-            }
-        }
-        
-        // --- IMPLEMENTACIÓN OPCIÓN 1 ---
-        function loadAndSetVoice() {
-            const voices = window.speechSynthesis.getVoices();
-            let bestVoice = null;
-
-            // Priorizar voces de alta calidad conocidas
-            const highQualityNames = ['Google español', 'Microsoft Sabina', 'Paulina'];
-
-            for (const name of highQualityNames) {
-                bestVoice = voices.find(voice => voice.lang.startsWith('es-') && voice.name.includes(name));
-                if (bestVoice) break;
-            }
-
-            // Si no se encuentra una de alta calidad, usar la lógica anterior
-            if (!bestVoice) {
-                bestVoice = voices.find(voice => voice.lang.startsWith('es-') && (voice.name.includes('Female') || voice.name.includes('Femenino') || voice.name.includes('Mujer')));
-            }
-
-            selectedVoice = bestVoice || voices.find(voice => voice.lang.startsWith('es-'));
-        }
-
-        function speakNextInQueue() {
-            if (wasManuallyStopped || speechQueue.length === 0) {
-                listenBtn.textContent = "Escuchar Audio";
-                if (!wasManuallyStopped) {
-                    nextBtn.disabled = false;
-                    nextBtn.classList.add('pulsing-button');
-                }
-                speechQueue = [];
-                return;
-            }
-            const { utterance } = speechQueue.shift();
-            if(selectedVoice) utterance.voice = selectedVoice;
-            utterance.onend = speakNextInQueue;
-            window.speechSynthesis.speak(utterance);
-        }
-
-        function handleListen() {
-            if (autoPlayTimeout) clearTimeout(autoPlayTimeout);
-            
-            if (window.speechSynthesis.speaking) {
-                wasManuallyStopped = true;
-                speechQueue = [];
-                window.speechSynthesis.cancel();
-                return;
-            }
-            
-            wasManuallyStopped = false;
-            listenBtn.textContent = "Detener Audio";
-            
-            speechQueue = [];
-            const elementsToRead = [chapterTitleDisplay, ...chapterContentDisplay.children];
-            
-            elementsToRead.forEach(element => {
-                const text = element.textContent.trim();
-                if (text) {
-                    const sentences = text.match(/[^.!?]+[.!?]*/g) || [];
-                    sentences.forEach(sentenceText => {
-                        const trimmedSentence = sentenceText.trim();
-                        if (trimmedSentence) {
-                            const utterance = new SpeechSynthesisUtterance(trimmedSentence);
-                            utterance.lang = 'es-ES';
-                            // --- IMPLEMENTACIÓN OPCIÓN 1 ---
-                            // Ajuste de velocidad y tono para un sonido más natural
-                            utterance.rate = 0.9; // Un poco más lento que el normal (1.0)
-                            utterance.pitch = 1.0; // Tono normal
-                            speechQueue.push({ utterance });
-                        }
-                    });
-                }
-            });
-
-            speakNextInQueue();
-        }
-
-        function startQuiz() {
-            showScreen('quiz');
-            currentQuestionIndex = 0;
-            userAnswers = new Array(quizQuestions.length).fill(null);
-            renderQuestion();
-        }
-        
-        function renderQuestion() {
-            const q = quizQuestions[currentQuestionIndex];
-            quizContent.innerHTML = `
-                <p class="font-semibold text-xl text-center text-slate-200 mb-8">${currentQuestionIndex + 1}. ${q.question}</p>
-                <div class="flex flex-col space-y-4">
-                    ${q.options.map((option, index) => `
-                        <button class="quiz-option" data-answer-index="${index}">
-                            <span class="text-amber-400 font-bold mr-4">${String.fromCharCode(65 + index)}</span>
-                            <span class="flex-1">${option}</span>
-                        </button>
-                    `).join('')}
-                </div>
-            `;
-
-            document.querySelectorAll('.quiz-option').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const selectedIndex = parseInt(e.currentTarget.dataset.answerIndex);
-                    userAnswers[currentQuestionIndex] = selectedIndex;
-                    document.querySelectorAll('.quiz-option').forEach(b => b.classList.remove('selected'));
-                    e.currentTarget.classList.add('selected');
-                    updateQuizNavigation();
-                });
-            });
-
-            if (userAnswers[currentQuestionIndex] !== null) {
-                const selectedBtn = quizContent.querySelector(`.quiz-option[data-answer-index="${userAnswers[currentQuestionIndex]}"]`);
-                if (selectedBtn) selectedBtn.classList.add('selected');
-            }
-
-            updateQuizNavigation();
-            updateQuizProgressBar();
-        }
-
-        function updateQuizNavigation() {
-            prevQuestionBtn.style.visibility = currentQuestionIndex === 0 ? 'hidden' : 'visible';
-            const isLastQuestion = currentQuestionIndex === quizQuestions.length - 1;
-            nextQuestionBtn.classList.toggle('hidden', isLastQuestion);
-            submitQuizBtn.classList.toggle('hidden', !isLastQuestion);
-            
-            const answerSelected = userAnswers[currentQuestionIndex] !== null;
-            nextQuestionBtn.disabled = !answerSelected;
-            submitQuizBtn.disabled = !answerSelected;
-        }
-
-        function updateQuizProgressBar() {
-            const progress = ((currentQuestionIndex + 1) / quizQuestions.length) * 100;
-            quizProgressBar.style.width = `${progress}%`;
-        }
-        
-        async function submitQuiz() {
-            let correctAnswers = 0;
-            userAnswers.forEach((answer, index) => {
-                if (answer === quizQuestions[index].answer) correctAnswers++;
-            });
-            const score = Math.round((correctAnswers / quizQuestions.length) * 100);
-            
-            if (currentUser) {
-                currentUser.quizScore = score;
-                currentUser.completed_date = new Date().toLocaleDateString('es-AR');
-                currentUser.approved = score >= 80;
-                await saveUserProgressToSupabase(currentUser);
-            }
-            showResultScreen(score);
-        }
-        
-        function showResultScreen(score) {
-            showScreen('result');
-            resultScore.textContent = `${score}%`;
-            resultMessage.textContent = score >= 80 ? '¡Excelente! Has aprobado.' : 'Necesitas repasar. ¡Inténtalo de nuevo!';
-            diplomaBtn.classList.toggle('hidden', score < 80);
-            resultSummary.innerHTML = quizQuestions.map((q, i) => {
-                const isCorrect = userAnswers[i] === q.answer;
-                return `<div class="flex items-center text-sm ${isCorrect ? 'text-green-400' : 'text-red-400'}">
-                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">${isCorrect ? '<path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />' : '<path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />'}</svg>
-                    <span>Pregunta ${i+1}: ${isCorrect ? 'Correcta' : 'Incorrecta'}</span>
-                </div>`;
-            }).join('');
-        }
-
-        async function initializeApp() {
-            if ('speechSynthesis' in window) {
-                if (speechSynthesis.onvoiceschanged !== undefined) {
-                    speechSynthesis.onvoiceschanged = loadAndSetVoice;
-                } else {
-                    loadAndSetVoice();
-                }
-            }
-            
-            const urlParams = new URLSearchParams(window.location.search);
-            const adminMode = urlParams.get('admin') === 'true';
-            
-            if (adminMode) {
-                showScreen('admin');
-                loadApprovedUsers();
-            } else {
-                const storedEmail = localStorage.getItem('blatorh_course_email');
-                const storedCourseTitle = localStorage.getItem('blatorh_course_title');
-
-                if (storedEmail && storedCourseTitle === COURSE_TITLE) {
-                    try {
-                        const { data: userDataFromDB, error: loadError } = await supabaseClient
-                            .from('users_progress')
-                            .select('*')
-                            .eq('email', storedEmail)
-                            .eq('course_title', COURSE_TITLE)
-                            .single();
-
-                        if (loadError && loadError.code !== 'PGRST116') {
-                            throw loadError;
-                        }
-                        
-                        if (userDataFromDB) {
-                            currentUser = { ...userDataFromDB };
-                            nameInput.value = currentUser.name || '';
-                            surnameInput.value = currentUser.surname || '';
-                            emailInput.value = currentUser.email || '';
-
-                            if (currentUser.approved) {
-                                showScreen('diploma');
-                                updateDiplomaContent();
-                            } else {
-                                showScreen('course');
-                                currentChapterIndex = currentUser.progress || 0;
-                                loadChapter();
-                            }
-                        } else {
-                            localStorage.removeItem('blatorh_course_email');
-                            localStorage.removeItem('blatorh_course_title');
-                            showScreen('login');
-                        }
-                    } catch (err) {
-                        console.error('Error cargando progreso al inicio:', err);
-                        showMessage('Error al cargar tu progreso. Por favor, intenta iniciar sesión de nuevo.', 'error');
-                        localStorage.removeItem('blatorh_course_email');
-                        localStorage.removeItem('blatorh_course_title');
-                        showScreen('login');
-                    }
-                } else {
-                    showScreen('login');
-                    courseDurationEstimate.textContent = `Duración: ${calculateCourseDuration()} min`;
-                }
-            }
-        }
-        
-        function updateDiplomaContent() {
-             if (currentUser) {
-                 diplomaParticipantName.textContent = `${currentUser.name || ''} ${currentUser.surname || ''}`.trim();
-                 diplomaDate.textContent = currentUser.completed_date;
-             }
-        }
-
-        async function downloadDiploma() {
-            diplomaLoading.classList.remove('hidden');
-            downloadDiplomaBtn.disabled = true;
-            
-            const { jsPDF } = window.jspdf;
-            const diplomaContent = document.getElementById('diploma-content');
-            try {
-                const canvas = await html2canvas(diplomaContent, { scale: 3, backgroundColor: '#fdfbf4' });
-                const imgData = canvas.toDataURL('image/png');
-                const pdf = new jsPDF({ orientation: 'landscape', unit: 'px', format: [canvas.width, canvas.height] });
-                pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
-                pdf.save(`Diploma_BlatoRH_${currentUser.name}_${currentUser.surname}_${COURSE_TITLE.replace(/\s/g, '_')}.pdf`);
-            } catch (error) {
-                showMessage('Error al generar el diploma en PDF.', 'error');
-            } finally {
-                diplomaLoading.classList.add('hidden');
-                downloadDiplomaBtn.disabled = false;
-            }
-        }
-        
-        async function restartCourse(fullRestart = true) {
-             if (fullRestart) {
-                localStorage.removeItem('blatorh_course_email');
-                localStorage.removeItem('blatorh_course_title');
-                currentUser = null;
-                window.location.reload();
-             } else {
-                 startQuiz();
-             }
-        }
-        
-        async function loadApprovedUsers() {
-            const { data: users, error } = await supabaseClient
-                .from('users_progress')
-                .select('*')
-                .eq('approved', true)
-                .eq('course_title', COURSE_TITLE); // Only show for this course
-
-            if (error) {
-                console.error('Error cargando usuarios aprobados:', error.message);
-                showMessage('Error cargando usuarios aprobados.', 'error');
-                return;
-            }
-
-            approvedUsersTableBody.innerHTML = '';
-            if (users.length === 0) {
-                approvedUsersTableBody.innerHTML = '<tr><td colspan="5" class="py-3 px-6 text-center">No hay usuarios aprobados aún.</td></tr>';
-                return;
-            }
-
-            users.forEach(user => {
-                const row = document.createElement('tr');
-                row.classList.add('border-b', 'border-slate-700', 'hover:bg-slate-700');
-                row.innerHTML = `
-                    <td class="py-3 px-6 text-left whitespace-nowrap">${user.name || ''}</td>
-                    <td class="py-3 px-6 text-left whitespace-nowrap">${user.surname || ''}</td>
-                    <td class="py-3 px-6 text-left whitespace-nowrap">${user.email}</td>
-                    <td class="py-3 px-6 text-left">${user.quiz_score ? user.quiz_score.toFixed(0) + '%' : 'N/A'}</td>
-                    <td class="py-3 px-6 text-left whitespace-nowrap">${user.completed_date || 'N/A'}</td>
-                `;
-                approvedUsersTableBody.appendChild(row);
-            });
-        }
-        
-        function exportApprovedUsersToCsv() {
-            const users = Array.from(approvedUsersTableBody.rows).map(row => ({
-                name: row.cells[0].textContent,
-                surname: row.cells[1].textContent,
-                email: row.cells[2].textContent,
-                quizScore: row.cells[3].textContent,
-                completedDate: row.cells[4].textContent
-            }));
-
-            if (users.length === 0 || (users.length === 1 && users[0].name === 'No hay usuarios aprobados aún.')) {
-                showMessage('No hay usuarios aprobados para exportar.', 'error');
-                return;
-            }
-
-            let csvContent = "data:text/csv;charset=utf-8,";
-            csvContent += "Nombre,Apellido,Email,Score,Fecha de Finalización\n";
-
-            users.forEach(user => {
-                const row = [ user.name, user.surname, user.email, user.quizScore, user.completedDate ].map(item => `"${item}"`).join(",");
-                csvContent += row + "\n";
-            });
-
-            const encodedUri = encodeURI(csvContent);
-            const link = document.createElement("a");
-            link.setAttribute("href", encodedUri);
-            link.setAttribute("download", `Aprobados_${COURSE_TITLE.replace(/\s/g, '_')}.csv`);
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }
-        
-        function downloadResourcePdf() {
-            try {
-                // NOTE: This URL should be updated to point to the new course's PDF material if available.
-                const pdfUrl = 'https://raw.githubusercontent.com/BLHTR/CursoSeguridad/main/Procedimiento%20para%20el%20Reporte%20de%20Incidentes%20de%20Seguridad.pdf';
-                window.open(pdfUrl, '_blank');
-            } catch (error) {
-                showMessage('Error al abrir el PDF del curso.', 'error');
-            }
-        }
-
-        // Event Listeners
-        loginForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            loginSubmitBtn.disabled = true;
-            loginSubmitBtn.querySelector('.btn-text').classList.add('hidden');
-            loginSubmitBtn.querySelector('.btn-loader').classList.remove('hidden');
-
-            const name = nameInput.value.trim();
-            const surname = surnameInput.value.trim();
-            const email = emailInput.value.trim();
-
-            try {
-                const { data: existingUser, error: findError } = await supabaseClient
-                    .from('users_progress')
-                    .select('id, progress, approved, name, surname, completed_date, quiz_score')
-                    .eq('email', email)
-                    .eq('course_title', COURSE_TITLE)
-                    .single();
-
-                if (findError && findError.code !== 'PGRST116') {
-                    throw findError;
-                }
-
-                if (existingUser) {
-                    currentUser = {
-                        ...existingUser,
-                        name: name,
-                        surname: surname,
-                        email: email,
-                        course_title: COURSE_TITLE
-                    };
-                } else {
-                    currentUser = {
-                        id: crypto.randomUUID(),
-                        name: name,
-                        surname: surname,
-                        email: email,
-                        course_title: COURSE_TITLE,
-                        progress: 0,
-                        quizScore: null,
-                        completed_date: null,
-                        approved: false
-                    };
-                }
-                
-                await saveUserProgressToSupabase(currentUser);
-                
-                localStorage.setItem('blatorh_course_email', currentUser.email);
-                localStorage.setItem('blatorh_course_title', currentUser.course_title);
-
-                if (currentUser.approved && currentUser.course_title === COURSE_TITLE) {
-                    showScreen('diploma');
-                    updateDiplomaContent();
-                } else {
-                    showScreen('course');
-                    currentChapterIndex = currentUser.progress || 0;
-                    loadChapter();
-                }
-
-            } catch (err) {
-                console.error('Error en el ingreso:', err);
-                const errorMessage = err.message || 'Ocurrió un problema al conectar con la base de datos.';
-                if (err.code === '23505') {
-                     showMessage(`Error: Ya existe un registro para este email en este curso.`, 'error');
-                } else {
-                     showMessage(`Error: ${errorMessage}`, 'error');
-                }
-            } finally {
-                loginSubmitBtn.disabled = false;
-                loginSubmitBtn.querySelector('.btn-text').classList.remove('hidden');
-                loginSubmitBtn.querySelector('.btn-loader').classList.add('hidden');
-            }
-        });
-
-        listenBtn.addEventListener('click', handleListen);
-        
-        nextBtn.addEventListener('click', () => { 
-            if (window.speechSynthesis.speaking) {
-                wasManuallyStopped = true;
-                speechQueue = [];
-                window.speechSynthesis.cancel();
-            }
-            currentChapterIndex++; 
-            loadChapter(); 
-        });
-
-        prevQuestionBtn.addEventListener('click', () => { 
-            if(currentQuestionIndex > 0) { 
-                currentQuestionIndex--; 
-                renderQuestion(); 
-            } 
-        });
-        nextQuestionBtn.addEventListener('click', () => { 
-            if(userAnswers[currentQuestionIndex] !== null && currentQuestionIndex < quizQuestions.length - 1) { 
-                currentQuestionIndex++; 
-                renderQuestion(); 
-            }
-        });
-        submitQuizBtn.addEventListener('click', submitQuiz);
-        restartQuizBtn.addEventListener('click', () => restartCourse(false));
-        diplomaBtn.addEventListener('click', () => { showScreen('diploma'); updateDiplomaContent(); });
-        downloadDiplomaBtn.addEventListener('click', downloadDiploma);
-        restartCourseBtn.addEventListener('click', () => restartCourse(true));
-        exportCsvBtn.addEventListener('click', exportApprovedUsersToCsv);
-        
-        document.addEventListener('DOMContentLoaded', initializeApp);
-    </script>
+    <footer class="main-footer">
+        <p>&copy; 2025 BlatoRH Group. Todos los derechos reservados.</p>
+    </footer>
 </body>
 </html>
